@@ -6,3 +6,4 @@ various machine learning examples
 - Anomaly Detection in Time Series Families by Recurrent Neural Networks (intraday data)
 - Random Embeddings vs PCA as Feature Extractors 
 - Robust Feature Selection on Heart Disease Dataset
+- Autoencoders helps (also!) in small dimensions on Framingham Heart Study Dataset
