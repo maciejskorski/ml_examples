@@ -7,3 +7,4 @@ various machine learning examples
 - Random Embeddings vs PCA as Feature Extractors 
 - Robust Feature Selection on Heart Disease Dataset
 - Autoencoders helps (also!) in small dimensions on Framingham Heart Study Dataset
+- [Hessian approximation](https://github.com/maciejskorski/ml_examples/blob/master/ApproxHessian.ipynb) for Neural Networks 
