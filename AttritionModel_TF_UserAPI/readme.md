@@ -1,6 +1,6 @@
 # Attrition Model deployed in Colab with Interactive User Interface
 
-The notebook demonstrates how to serve the tensorflow model and built a friendly user interface with Colab Notebook.  
+The notebook demonstrates how to <em>serve a tensorflow model along with an interactive user interface</em> using Colab Notebook.  
 
 The model estimates the attrition likelihood given employee data, such as gender, marital status, job-satisfication factors, salary etc.
 
