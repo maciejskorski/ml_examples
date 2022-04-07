@@ -3,6 +3,7 @@ various machine learning examples
 
 - MAPE regression (training in Keras + geometric insights)
 - Mixture of Experts (fitting a mixture of models, such as NNs...)
+- [Failure Likelihood by Recurrent Neural Networks](DeviceFailure.ipynb), a case study on device failure data
 - [Anomaly Detection by Recurrent Neural Networks](Temporal_AnomDetect_NNs.ipynb) in Time Series Families (intraday data)
 - Random Embeddings vs PCA as Feature Extractors 
 - [Piecewise Linear Models](Bayes_PiecewiseLinModel.ipynb) trained by Bayesian Inference 
