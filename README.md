@@ -1,5 +1,5 @@
 # ml_examples
-various machine learning examples
+Various machine learning case studies.
 
 - MAPE regression (training in Keras + geometric insights)
 - Mixture of Experts (fitting a mixture of models, such as NNs...)
