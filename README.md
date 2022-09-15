@@ -13,3 +13,5 @@ Various machine learning case studies.
 - [Employee Attrition Model](https://github.com/maciejskorski/ml_examples/blob/master/EmployeeAttrition_TF.ipynb) trained in TF and productionalized in Colab woth REST api 
 - [Heat Waves Models](https://github.com/maciejskorski/ml_examples/blob/master/HeatWaves_Models.ipynb), trained with various Python framworks (statsmodels, GPFlow, PyMC3) and used for sample hypotheses testing
 
+# Dev Ops Examples
+Some useful recipes
