@@ -15,3 +15,4 @@ Various machine learning case studies.
 
 # Dev Ops Examples
 Some useful recipes
+- [Monitoring and Managing Azure Jobs](AzureJobs_Dashboard.ipynb)
