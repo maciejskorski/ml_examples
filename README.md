@@ -1,4 +1,4 @@
-# ml_examples
+# Machine Learning Examples
 Various machine learning case studies.
 
 - MAPE regression (training in Keras + geometric insights)
