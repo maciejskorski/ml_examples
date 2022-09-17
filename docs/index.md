@@ -1,4 +1,7 @@
+```{toctree}
 ---
 maxdepth: 2
+caption: Contents
 ---
-Effectively Monitoring Azure Jobs <../AzureJobs_Dashboard.ipynb>
+../AzureJobs_Dashboard.ipynb
+```
