@@ -3,6 +3,8 @@
 from cgitb import enable
 import os
 import sys
+sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, os.path.abspath('../..'))
 
 # General information about the project.
 project = "ML Code Examples"
@@ -10,7 +12,7 @@ author = "Maciej Skorski"
 copyright = "2018-2022, Maciej Skorski"
 
 # Sources
-source_suffix = ['.md']
+source_suffix = ['.md','.rst']
 master_doc = 'index'
 
 # Sphinx Extensions

@@ -1,7 +1,8 @@
 ```{toctree}
 ---
 maxdepth: 2
-caption: Contents
+caption: Table of Contents
 ---
-../AzureJobs_Dashboard.ipynb
+azurejobs_dashboard_link
 ```
+
