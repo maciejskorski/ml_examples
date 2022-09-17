@@ -3,8 +3,6 @@
 from cgitb import enable
 import os
 import sys
-sys.path.insert(0, os.path.abspath('..'))
-sys.path.insert(0, os.path.abspath('../..'))
 
 # General information about the project.
 project = "ML Code Examples"
@@ -27,7 +25,7 @@ html_theme = "sphinx_book_theme"
 html_theme_options = {
     "repository_url": "https://github.com/maciejskorski/ml_examples/",
     "repository_branch": "master",
-    "path_to_docs": "docs",
+    "path_to_docs": "",
 }
 
 nb_execution_mode = "off"
