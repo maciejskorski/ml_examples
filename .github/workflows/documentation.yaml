@@ -14,6 +14,7 @@ jobs:
           pip install myst-parser
           pip install myst-nb
           pip install sphinx-book-theme
+          pip install sphinxcontrib-bibtex
       - name: Sphinx build
         run: |
           sphinx-build docs _build
