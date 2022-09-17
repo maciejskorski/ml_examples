@@ -12,7 +12,7 @@ author = "Maciej Skorski"
 copyright = "2018-2022, Maciej Skorski"
 
 # Sources
-source_suffix = ['.md','.rst']
+source_suffix = ['.md','.rst','.ipynb']
 master_doc = 'index'
 
 # Sphinx Extensions
