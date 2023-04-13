@@ -17,3 +17,4 @@ Various machine learning case studies.
 Some useful recipes
 - [Monitoring and Managing Azure Jobs](AzureJobs_Dashboard.ipynb)
 - [Tracking Azure Experiments](AzureJobs_Tracking.ipynb)
+- [Transfering data between Google Drive and Google Cloud](ml_examples/GoogleDrive2Cloud_Transfer.ipynb)
