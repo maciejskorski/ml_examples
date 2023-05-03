@@ -1,9 +1,11 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 # Machine Learning Examples
 Various machine learning case studies, created as educational materials or showcases. 
 
 - MAPE regression (training in Keras + geometric insights)
 - [Mixture of Experts](ExpertsMixture.ipynb) (fitting a mixture of models, such as NNs...)
-- [Malfunction Likelihood by Recurrent Neural Networks](DeviceFailure.ipynb), a case study on device failure temporal data
+- [Malfunction Likelihood by Recurrent Neural Networks](src/DeviceFailure.ipynb), a case study on device failure temporal data
 - [Anomaly Detection by Recurrent Neural Networks](Temporal_AnomDetect_NNs.ipynb) in Time Series Families (intraday data)
 - Random Embeddings vs PCA as Feature Extractors 
 - [Piecewise Linear Models](src/Bayes_PiecewiseLinModel.ipynb) trained by Bayesian Inference 
