@@ -12,7 +12,7 @@ Various machine learning case studies, created as educational materials or showc
 - [Hessian approximation](https://github.com/maciejskorski/ml_examples/tree/master/approx_hessian) for Neural Networks 
 - [Employee Attrition Model](src/EmployeeAttrition_TF.ipynb) trained in Tensorflow and productionalized on Google Colab with REST API 
 - [Heat Waves Models](src/HeatWaves_Models.ipynb), trained with various Python frameworks (statsmodels, GPFlow, PyMC3) and used for complex hypotheses testing
-- [Hiring Bias Study](./src/HiringBias.ipynb), demonstrates the need of model-driven statistical insights
+- [Hiring Bias Study](src/HiringBias.ipynb), demonstrates the need of model-driven statistical insights
 
 # MLOps Examples
 Some useful recipes
