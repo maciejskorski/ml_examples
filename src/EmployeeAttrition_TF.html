@@ -1,0 +1,2133 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Employee Attrition - Case Study &#8212; ML Code Examples  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'src/EmployeeAttrition_TF';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">ML Code Examples  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/src/EmployeeAttrition_TF.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Employee Attrition - Case Study</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling">Modeling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#non-trivial-model">Non-Trivial Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimized-model">Optimized Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#models-for-hypothesis-testing">Models for Hypothesis Testing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-model">TF Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-and-train">Build and Train</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deploy">Deploy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-time-predictions">Real-Time Predictions</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p><a href="https://colab.research.google.com/github/maciejskorski/ml_examples/blob/master/EmployeeAttrition_TF.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<section id="employee-attrition-case-study">
+<h1>Employee Attrition - Case Study<a class="headerlink" href="#employee-attrition-case-study" title="Permalink to this heading">#</a></h1>
+<p>We build and productionalize the model with Tensorflow, in Colab Cloud.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Load and Explore Data</span>
+
+<span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">files</span><span class="p">,</span><span class="n">data_table</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+
+<span class="c1">## load data</span>
+<span class="n">uploaded</span> <span class="o">=</span> <span class="n">files</span><span class="o">.</span><span class="n">upload</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">uploaded</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1">## encode target</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Attrition&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Attrition&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Yes&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int32&#39;</span><span class="p">)</span>
+
+<span class="c1">## confirm no nulls!</span>
+<span class="k">assert</span> <span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">==</span><span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;confirmed no nulls&#39;</span><span class="p">)</span>
+
+<span class="c1">## see the percentage of attritions</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;average attrition:&#39;</span><span class="p">,</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Attrition&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+
+<span class="c1">## look at the data: mix of numeric and categorical features</span>
+<span class="n">data_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span> <span class="n">df</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+     <input type="file" id="files-d1ddf202-f4cf-416c-916e-acc56214e0ec" name="files[]" multiple disabled
+        style="border:none" />
+     <output id="result-d1ddf202-f4cf-416c-916e-acc56214e0ec">
+      Upload widget is only available when the cell has been executed in the
+      current browser session. Please rerun this cell to enable.
+      </output>
+      <script src="/nbextensions/google.colab/files.js"></script> </div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saving employee-attrition.csv to employee-attrition (1).csv
+confirmed no nulls
+average attrition: 0.16122448979591836
+Warning: Total number of columns (35) exceeds max_columns (20) limiting to first max_columns 
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age</th>
+      <th>Attrition</th>
+      <th>BusinessTravel</th>
+      <th>DailyRate</th>
+      <th>Department</th>
+      <th>DistanceFromHome</th>
+      <th>Education</th>
+      <th>EducationField</th>
+      <th>EmployeeCount</th>
+      <th>EmployeeNumber</th>
+      <th>EnvironmentSatisfaction</th>
+      <th>Gender</th>
+      <th>HourlyRate</th>
+      <th>JobInvolvement</th>
+      <th>JobLevel</th>
+      <th>JobRole</th>
+      <th>JobSatisfaction</th>
+      <th>MaritalStatus</th>
+      <th>MonthlyIncome</th>
+      <th>MonthlyRate</th>
+      <th>NumCompaniesWorked</th>
+      <th>Over18</th>
+      <th>OverTime</th>
+      <th>PercentSalaryHike</th>
+      <th>PerformanceRating</th>
+      <th>RelationshipSatisfaction</th>
+      <th>StandardHours</th>
+      <th>StockOptionLevel</th>
+      <th>TotalWorkingYears</th>
+      <th>TrainingTimesLastYear</th>
+      <th>WorkLifeBalance</th>
+      <th>YearsAtCompany</th>
+      <th>YearsInCurrentRole</th>
+      <th>YearsSinceLastPromotion</th>
+      <th>YearsWithCurrManager</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>41</td>
+      <td>1</td>
+      <td>Travel_Rarely</td>
+      <td>1102</td>
+      <td>Sales</td>
+      <td>1</td>
+      <td>2</td>
+      <td>Life Sciences</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>Female</td>
+      <td>94</td>
+      <td>3</td>
+      <td>2</td>
+      <td>Sales Executive</td>
+      <td>4</td>
+      <td>Single</td>
+      <td>5993</td>
+      <td>19479</td>
+      <td>8</td>
+      <td>Y</td>
+      <td>Yes</td>
+      <td>11</td>
+      <td>3</td>
+      <td>1</td>
+      <td>80</td>
+      <td>0</td>
+      <td>8</td>
+      <td>0</td>
+      <td>1</td>
+      <td>6</td>
+      <td>4</td>
+      <td>0</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>49</td>
+      <td>0</td>
+      <td>Travel_Frequently</td>
+      <td>279</td>
+      <td>Research &amp; Development</td>
+      <td>8</td>
+      <td>1</td>
+      <td>Life Sciences</td>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>Male</td>
+      <td>61</td>
+      <td>2</td>
+      <td>2</td>
+      <td>Research Scientist</td>
+      <td>2</td>
+      <td>Married</td>
+      <td>5130</td>
+      <td>24907</td>
+      <td>1</td>
+      <td>Y</td>
+      <td>No</td>
+      <td>23</td>
+      <td>4</td>
+      <td>4</td>
+      <td>80</td>
+      <td>1</td>
+      <td>10</td>
+      <td>3</td>
+      <td>3</td>
+      <td>10</td>
+      <td>7</td>
+      <td>1</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>37</td>
+      <td>1</td>
+      <td>Travel_Rarely</td>
+      <td>1373</td>
+      <td>Research &amp; Development</td>
+      <td>2</td>
+      <td>2</td>
+      <td>Other</td>
+      <td>1</td>
+      <td>4</td>
+      <td>4</td>
+      <td>Male</td>
+      <td>92</td>
+      <td>2</td>
+      <td>1</td>
+      <td>Laboratory Technician</td>
+      <td>3</td>
+      <td>Single</td>
+      <td>2090</td>
+      <td>2396</td>
+      <td>6</td>
+      <td>Y</td>
+      <td>Yes</td>
+      <td>15</td>
+      <td>3</td>
+      <td>2</td>
+      <td>80</td>
+      <td>0</td>
+      <td>7</td>
+      <td>3</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>33</td>
+      <td>0</td>
+      <td>Travel_Frequently</td>
+      <td>1392</td>
+      <td>Research &amp; Development</td>
+      <td>3</td>
+      <td>4</td>
+      <td>Life Sciences</td>
+      <td>1</td>
+      <td>5</td>
+      <td>4</td>
+      <td>Female</td>
+      <td>56</td>
+      <td>3</td>
+      <td>1</td>
+      <td>Research Scientist</td>
+      <td>3</td>
+      <td>Married</td>
+      <td>2909</td>
+      <td>23159</td>
+      <td>1</td>
+      <td>Y</td>
+      <td>Yes</td>
+      <td>11</td>
+      <td>3</td>
+      <td>3</td>
+      <td>80</td>
+      <td>0</td>
+      <td>8</td>
+      <td>3</td>
+      <td>3</td>
+      <td>8</td>
+      <td>7</td>
+      <td>3</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>27</td>
+      <td>0</td>
+      <td>Travel_Rarely</td>
+      <td>591</td>
+      <td>Research &amp; Development</td>
+      <td>2</td>
+      <td>1</td>
+      <td>Medical</td>
+      <td>1</td>
+      <td>7</td>
+      <td>1</td>
+      <td>Male</td>
+      <td>40</td>
+      <td>3</td>
+      <td>1</td>
+      <td>Laboratory Technician</td>
+      <td>2</td>
+      <td>Married</td>
+      <td>3468</td>
+      <td>16632</td>
+      <td>9</td>
+      <td>Y</td>
+      <td>No</td>
+      <td>12</td>
+      <td>3</td>
+      <td>4</td>
+      <td>80</td>
+      <td>1</td>
+      <td>6</td>
+      <td>3</td>
+      <td>3</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1465</th>
+      <td>36</td>
+      <td>0</td>
+      <td>Travel_Frequently</td>
+      <td>884</td>
+      <td>Research &amp; Development</td>
+      <td>23</td>
+      <td>2</td>
+      <td>Medical</td>
+      <td>1</td>
+      <td>2061</td>
+      <td>3</td>
+      <td>Male</td>
+      <td>41</td>
+      <td>4</td>
+      <td>2</td>
+      <td>Laboratory Technician</td>
+      <td>4</td>
+      <td>Married</td>
+      <td>2571</td>
+      <td>12290</td>
+      <td>4</td>
+      <td>Y</td>
+      <td>No</td>
+      <td>17</td>
+      <td>3</td>
+      <td>3</td>
+      <td>80</td>
+      <td>1</td>
+      <td>17</td>
+      <td>3</td>
+      <td>3</td>
+      <td>5</td>
+      <td>2</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1466</th>
+      <td>39</td>
+      <td>0</td>
+      <td>Travel_Rarely</td>
+      <td>613</td>
+      <td>Research &amp; Development</td>
+      <td>6</td>
+      <td>1</td>
+      <td>Medical</td>
+      <td>1</td>
+      <td>2062</td>
+      <td>4</td>
+      <td>Male</td>
+      <td>42</td>
+      <td>2</td>
+      <td>3</td>
+      <td>Healthcare Representative</td>
+      <td>1</td>
+      <td>Married</td>
+      <td>9991</td>
+      <td>21457</td>
+      <td>4</td>
+      <td>Y</td>
+      <td>No</td>
+      <td>15</td>
+      <td>3</td>
+      <td>1</td>
+      <td>80</td>
+      <td>1</td>
+      <td>9</td>
+      <td>5</td>
+      <td>3</td>
+      <td>7</td>
+      <td>7</td>
+      <td>1</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>1467</th>
+      <td>27</td>
+      <td>0</td>
+      <td>Travel_Rarely</td>
+      <td>155</td>
+      <td>Research &amp; Development</td>
+      <td>4</td>
+      <td>3</td>
+      <td>Life Sciences</td>
+      <td>1</td>
+      <td>2064</td>
+      <td>2</td>
+      <td>Male</td>
+      <td>87</td>
+      <td>4</td>
+      <td>2</td>
+      <td>Manufacturing Director</td>
+      <td>2</td>
+      <td>Married</td>
+      <td>6142</td>
+      <td>5174</td>
+      <td>1</td>
+      <td>Y</td>
+      <td>Yes</td>
+      <td>20</td>
+      <td>4</td>
+      <td>2</td>
+      <td>80</td>
+      <td>1</td>
+      <td>6</td>
+      <td>0</td>
+      <td>3</td>
+      <td>6</td>
+      <td>2</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1468</th>
+      <td>49</td>
+      <td>0</td>
+      <td>Travel_Frequently</td>
+      <td>1023</td>
+      <td>Sales</td>
+      <td>2</td>
+      <td>3</td>
+      <td>Medical</td>
+      <td>1</td>
+      <td>2065</td>
+      <td>4</td>
+      <td>Male</td>
+      <td>63</td>
+      <td>2</td>
+      <td>2</td>
+      <td>Sales Executive</td>
+      <td>2</td>
+      <td>Married</td>
+      <td>5390</td>
+      <td>13243</td>
+      <td>2</td>
+      <td>Y</td>
+      <td>No</td>
+      <td>14</td>
+      <td>3</td>
+      <td>4</td>
+      <td>80</td>
+      <td>0</td>
+      <td>17</td>
+      <td>3</td>
+      <td>2</td>
+      <td>9</td>
+      <td>6</td>
+      <td>0</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>1469</th>
+      <td>34</td>
+      <td>0</td>
+      <td>Travel_Rarely</td>
+      <td>628</td>
+      <td>Research &amp; Development</td>
+      <td>8</td>
+      <td>3</td>
+      <td>Medical</td>
+      <td>1</td>
+      <td>2068</td>
+      <td>2</td>
+      <td>Male</td>
+      <td>82</td>
+      <td>4</td>
+      <td>2</td>
+      <td>Laboratory Technician</td>
+      <td>3</td>
+      <td>Married</td>
+      <td>4404</td>
+      <td>10228</td>
+      <td>2</td>
+      <td>Y</td>
+      <td>No</td>
+      <td>12</td>
+      <td>3</td>
+      <td>1</td>
+      <td>80</td>
+      <td>0</td>
+      <td>6</td>
+      <td>3</td>
+      <td>4</td>
+      <td>4</td>
+      <td>3</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+<p>1470 rows × 35 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Feature Elimination</span>
+
+<span class="c1">## eliminate unpredictive features</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_auc_score</span>
+
+<span class="c1">### trivial values</span>
+<span class="n">bad_cols</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span><span class="o">==</span><span class="mi">1</span><span class="p">,</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">bad_cols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">bad_cols</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">bad_cols</span><span class="p">:</span>
+  <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;dropping trivial cols:&#39;</span><span class="o">+</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">bad_cols</span><span class="p">))</span>
+
+<span class="c1">### trivial predictive power</span>
+<span class="n">formulas</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">formulas</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="o">!=</span><span class="s1">&#39;Attrition&#39;</span><span class="p">,</span><span class="n">formulas</span><span class="p">)</span>
+<span class="n">formulas</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:(</span><span class="n">t</span><span class="p">,</span><span class="s1">&#39;Attrition~</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">t</span><span class="p">),</span><span class="n">formulas</span><span class="p">)</span>
+<span class="n">models</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">smf</span><span class="o">.</span><span class="n">glm</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span><span class="n">family</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Binomial</span><span class="p">())</span><span class="o">.</span><span class="n">fit</span><span class="p">()),</span><span class="n">formulas</span><span class="p">)</span>
+<span class="n">models</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Attrition&#39;</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">0.51</span><span class="p">,</span><span class="n">models</span><span class="p">)</span>
+<span class="n">bad_cols</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">models</span><span class="p">)</span>
+<span class="n">bad_cols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">bad_cols</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;droping unpredictive cols:&#39;</span><span class="p">,</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">bad_cols</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">bad_cols</span><span class="p">:</span>
+  <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dropping trivial cols:EmployeeCount,Over18,StandardHours
+droping unpredictive cols: EmployeeNumber,HourlyRate,PerformanceRating
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Featue Exploration</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1">## numeric cols</span>
+
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;MonthlyIncome&#39;</span><span class="p">,</span><span class="s1">&#39;PercentSalaryHike&#39;</span><span class="p">,</span><span class="s1">&#39;DailyRate&#39;</span><span class="p">,</span><span class="s1">&#39;MonthlyRate&#39;</span><span class="p">]</span>
+<span class="n">_</span><span class="p">,</span><span class="n">axs</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">cols</span><span class="p">),</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">c</span><span class="p">,</span><span class="n">ax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">cols</span><span class="p">,</span><span class="n">axs</span><span class="p">):</span>
+  <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="n">c</span><span class="p">,</span><span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Attrition&#39;</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="c1">## categorical cols</span>
+
+<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span><span class="n">display</span>
+
+<span class="n">CSS</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;.output {flex-direction: row;}&quot;&quot;&quot;</span>
+<span class="n">HTML</span><span class="p">(</span><span class="s1">&#39;&lt;style&gt;</span><span class="si">{}</span><span class="s1">&lt;/style&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">CSS</span><span class="p">))</span>
+
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;JobSatisfaction&#39;</span><span class="p">,</span><span class="s1">&#39;BusinessTravel&#39;</span><span class="p">,</span><span class="s1">&#39;OverTime&#39;</span><span class="p">,</span><span class="s1">&#39;WorkLifeBalance&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">:</span>
+  <span class="n">tmp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">c</span><span class="p">)[[</span><span class="s1">&#39;Attrition&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+  <span class="n">display</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Attrition</th>
+    </tr>
+    <tr>
+      <th>JobSatisfaction</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0.228374</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.164286</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.165158</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.113290</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Attrition</th>
+    </tr>
+    <tr>
+      <th>BusinessTravel</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Non-Travel</th>
+      <td>0.080000</td>
+    </tr>
+    <tr>
+      <th>Travel_Frequently</th>
+      <td>0.249097</td>
+    </tr>
+    <tr>
+      <th>Travel_Rarely</th>
+      <td>0.149569</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Attrition</th>
+    </tr>
+    <tr>
+      <th>OverTime</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>No</th>
+      <td>0.104364</td>
+    </tr>
+    <tr>
+      <th>Yes</th>
+      <td>0.305288</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Attrition</th>
+    </tr>
+    <tr>
+      <th>WorkLifeBalance</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0.312500</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.168605</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.142217</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.176471</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><img alt="../_images/0b3fa5c2609e5580f38e60381272d118ed24e871661f4f27cb08cc7a95d0e220.png" src="../_images/0b3fa5c2609e5580f38e60381272d118ed24e871661f4f27cb08cc7a95d0e220.png" />
+</div>
+</div>
+<section id="modeling">
+<h2>Modeling<a class="headerlink" href="#modeling" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Trivial Model</span>
+
+<span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">bic</span><span class="p">,</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Attrition&#39;</span><span class="p">],</span><span class="n">model</span><span class="o">.</span><span class="n">fittedvalues</span><span class="p">))</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">glm</span><span class="p">(</span><span class="s1">&#39;Attrition~1&#39;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span><span class="n">family</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Binomial</span><span class="p">())</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;BIC=</span><span class="si">%s</span><span class="s1">,ROCAUC=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">evaluate</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BIC=-9414.860270755564,ROCAUC=0.5
+</pre></div>
+</div>
+<div class="output text_html"><table class="simpletable">
+<caption>Generalized Linear Model Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>       <td>Attrition</td>    <th>  No. Observations:  </th>  <td>  1470</td> 
+</tr>
+<tr>
+  <th>Model:</th>                  <td>GLM</td>       <th>  Df Residuals:      </th>  <td>  1469</td> 
+</tr>
+<tr>
+  <th>Model Family:</th>        <td>Binomial</td>     <th>  Df Model:          </th>  <td>     0</td> 
+</tr>
+<tr>
+  <th>Link Function:</th>         <td>logit</td>      <th>  Scale:             </th> <td>  1.0000</td>
+</tr>
+<tr>
+  <th>Method:</th>                <td>IRLS</td>       <th>  Log-Likelihood:    </th> <td> -649.29</td>
+</tr>
+<tr>
+  <th>Date:</th>            <td>Tue, 15 Jun 2021</td> <th>  Deviance:          </th> <td>  1298.6</td>
+</tr>
+<tr>
+  <th>Time:</th>                <td>13:51:09</td>     <th>  Pearson chi2:      </th> <td>1.47e+03</td>
+</tr>
+<tr>
+  <th>No. Iterations:</th>          <td>3</td>        <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+      <td></td>         <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th> <td>   -1.6491</td> <td>    0.071</td> <td>  -23.252</td> <td> 0.000</td> <td>   -1.788</td> <td>   -1.510</td>
+</tr>
+</table></div></div>
+</div>
+<section id="non-trivial-model">
+<h3>Non-Trivial Model<a class="headerlink" href="#non-trivial-model" title="Permalink to this heading">#</a></h3>
+<p>Here we use all features.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cols</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span><span class="n">c</span><span class="o">!=</span><span class="s1">&#39;Attrition&#39;</span> <span class="p">,</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;Attrition~+&#39;</span><span class="o">+</span><span class="s1">&#39;+&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">glm</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span><span class="n">family</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Binomial</span><span class="p">())</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;BIC=</span><span class="si">%s</span><span class="s1">,ROCAUC=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">evaluate</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BIC=-9547.969897343854,ROCAUC=0.8685686518080494
+</pre></div>
+</div>
+<div class="output text_html"><table class="simpletable">
+<caption>Generalized Linear Model Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>       <td>Attrition</td>    <th>  No. Observations:  </th>  <td>  1470</td> 
+</tr>
+<tr>
+  <th>Model:</th>                  <td>GLM</td>       <th>  Df Residuals:      </th>  <td>  1427</td> 
+</tr>
+<tr>
+  <th>Model Family:</th>        <td>Binomial</td>     <th>  Df Model:          </th>  <td>    42</td> 
+</tr>
+<tr>
+  <th>Link Function:</th>         <td>logit</td>      <th>  Scale:             </th> <td>  1.0000</td>
+</tr>
+<tr>
+  <th>Method:</th>                <td>IRLS</td>       <th>  Log-Likelihood:    </th> <td> -429.58</td>
+</tr>
+<tr>
+  <th>Date:</th>            <td>Tue, 15 Jun 2021</td> <th>  Deviance:          </th> <td>  859.17</td>
+</tr>
+<tr>
+  <th>Time:</th>                <td>13:51:09</td>     <th>  Pearson chi2:      </th> <td>2.48e+03</td>
+</tr>
+<tr>
+  <th>No. Iterations:</th>         <td>21</td>        <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+                    <td></td>                      <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th>                            <td>  -17.3028</td> <td> 1.27e+04</td> <td>   -0.001</td> <td> 0.999</td> <td> -2.5e+04</td> <td> 2.49e+04</td>
+</tr>
+<tr>
+  <th>BusinessTravel[T.Travel_Frequently]</th>  <td>    1.9131</td> <td>    0.411</td> <td>    4.653</td> <td> 0.000</td> <td>    1.107</td> <td>    2.719</td>
+</tr>
+<tr>
+  <th>BusinessTravel[T.Travel_Rarely]</th>      <td>    1.0328</td> <td>    0.379</td> <td>    2.724</td> <td> 0.006</td> <td>    0.290</td> <td>    1.776</td>
+</tr>
+<tr>
+  <th>Department[T.Research & Development]</th> <td>   19.7498</td> <td> 1.27e+04</td> <td>    0.002</td> <td> 0.999</td> <td>-2.49e+04</td> <td>  2.5e+04</td>
+</tr>
+<tr>
+  <th>Department[T.Sales]</th>                  <td>   19.5764</td> <td> 1.27e+04</td> <td>    0.002</td> <td> 0.999</td> <td>-2.49e+04</td> <td>  2.5e+04</td>
+</tr>
+<tr>
+  <th>EducationField[T.Life Sciences]</th>      <td>   -0.7351</td> <td>    0.804</td> <td>   -0.914</td> <td> 0.361</td> <td>   -2.312</td> <td>    0.841</td>
+</tr>
+<tr>
+  <th>EducationField[T.Marketing]</th>          <td>   -0.3353</td> <td>    0.853</td> <td>   -0.393</td> <td> 0.694</td> <td>   -2.008</td> <td>    1.337</td>
+</tr>
+<tr>
+  <th>EducationField[T.Medical]</th>            <td>   -0.8316</td> <td>    0.804</td> <td>   -1.034</td> <td> 0.301</td> <td>   -2.407</td> <td>    0.744</td>
+</tr>
+<tr>
+  <th>EducationField[T.Other]</th>              <td>   -0.8072</td> <td>    0.864</td> <td>   -0.935</td> <td> 0.350</td> <td>   -2.500</td> <td>    0.886</td>
+</tr>
+<tr>
+  <th>EducationField[T.Technical Degree]</th>   <td>    0.1912</td> <td>    0.823</td> <td>    0.232</td> <td> 0.816</td> <td>   -1.421</td> <td>    1.803</td>
+</tr>
+<tr>
+  <th>Gender[T.Male]</th>                       <td>    0.3938</td> <td>    0.184</td> <td>    2.137</td> <td> 0.033</td> <td>    0.033</td> <td>    0.755</td>
+</tr>
+<tr>
+  <th>JobRole[T.Human Resources]</th>           <td>   21.0048</td> <td> 1.27e+04</td> <td>    0.002</td> <td> 0.999</td> <td>-2.49e+04</td> <td>  2.5e+04</td>
+</tr>
+<tr>
+  <th>JobRole[T.Laboratory Technician]</th>     <td>    1.4874</td> <td>    0.483</td> <td>    3.078</td> <td> 0.002</td> <td>    0.540</td> <td>    2.434</td>
+</tr>
+<tr>
+  <th>JobRole[T.Manager]</th>                   <td>    0.3838</td> <td>    0.887</td> <td>    0.433</td> <td> 0.665</td> <td>   -1.354</td> <td>    2.122</td>
+</tr>
+<tr>
+  <th>JobRole[T.Manufacturing Director]</th>    <td>    0.2317</td> <td>    0.533</td> <td>    0.435</td> <td> 0.664</td> <td>   -0.812</td> <td>    1.276</td>
+</tr>
+<tr>
+  <th>JobRole[T.Research Director]</th>         <td>   -1.0818</td> <td>    1.006</td> <td>   -1.076</td> <td> 0.282</td> <td>   -3.053</td> <td>    0.889</td>
+</tr>
+<tr>
+  <th>JobRole[T.Research Scientist]</th>        <td>    0.5393</td> <td>    0.495</td> <td>    1.090</td> <td> 0.276</td> <td>   -0.431</td> <td>    1.509</td>
+</tr>
+<tr>
+  <th>JobRole[T.Sales Executive]</th>           <td>    1.2064</td> <td>    1.124</td> <td>    1.074</td> <td> 0.283</td> <td>   -0.996</td> <td>    3.409</td>
+</tr>
+<tr>
+  <th>JobRole[T.Sales Representative]</th>      <td>    2.1480</td> <td>    1.178</td> <td>    1.823</td> <td> 0.068</td> <td>   -0.162</td> <td>    4.458</td>
+</tr>
+<tr>
+  <th>MaritalStatus[T.Married]</th>             <td>    0.3239</td> <td>    0.266</td> <td>    1.216</td> <td> 0.224</td> <td>   -0.198</td> <td>    0.846</td>
+</tr>
+<tr>
+  <th>MaritalStatus[T.Single]</th>              <td>    1.1491</td> <td>    0.346</td> <td>    3.325</td> <td> 0.001</td> <td>    0.472</td> <td>    1.826</td>
+</tr>
+<tr>
+  <th>OverTime[T.Yes]</th>                      <td>    1.9843</td> <td>    0.193</td> <td>   10.256</td> <td> 0.000</td> <td>    1.605</td> <td>    2.364</td>
+</tr>
+<tr>
+  <th>Age</th>                                  <td>   -0.0308</td> <td>    0.014</td> <td>   -2.282</td> <td> 0.022</td> <td>   -0.057</td> <td>   -0.004</td>
+</tr>
+<tr>
+  <th>DailyRate</th>                            <td>   -0.0003</td> <td>    0.000</td> <td>   -1.262</td> <td> 0.207</td> <td>   -0.001</td> <td>    0.000</td>
+</tr>
+<tr>
+  <th>DistanceFromHome</th>                     <td>    0.0452</td> <td>    0.011</td> <td>    4.196</td> <td> 0.000</td> <td>    0.024</td> <td>    0.066</td>
+</tr>
+<tr>
+  <th>Education</th>                            <td>    0.0035</td> <td>    0.088</td> <td>    0.041</td> <td> 0.968</td> <td>   -0.168</td> <td>    0.175</td>
+</tr>
+<tr>
+  <th>EnvironmentSatisfaction</th>              <td>   -0.4351</td> <td>    0.083</td> <td>   -5.251</td> <td> 0.000</td> <td>   -0.598</td> <td>   -0.273</td>
+</tr>
+<tr>
+  <th>JobInvolvement</th>                       <td>   -0.5239</td> <td>    0.122</td> <td>   -4.282</td> <td> 0.000</td> <td>   -0.764</td> <td>   -0.284</td>
+</tr>
+<tr>
+  <th>JobLevel</th>                             <td>   -0.0831</td> <td>    0.316</td> <td>   -0.263</td> <td> 0.792</td> <td>   -0.702</td> <td>    0.536</td>
+</tr>
+<tr>
+  <th>JobSatisfaction</th>                      <td>   -0.4129</td> <td>    0.081</td> <td>   -5.080</td> <td> 0.000</td> <td>   -0.572</td> <td>   -0.254</td>
+</tr>
+<tr>
+  <th>MonthlyIncome</th>                        <td> 8.662e-06</td> <td> 8.12e-05</td> <td>    0.107</td> <td> 0.915</td> <td>   -0.000</td> <td>    0.000</td>
+</tr>
+<tr>
+  <th>MonthlyRate</th>                          <td> 4.615e-06</td> <td> 1.25e-05</td> <td>    0.370</td> <td> 0.711</td> <td>-1.98e-05</td> <td>  2.9e-05</td>
+</tr>
+<tr>
+  <th>NumCompaniesWorked</th>                   <td>    0.1947</td> <td>    0.039</td> <td>    5.030</td> <td> 0.000</td> <td>    0.119</td> <td>    0.271</td>
+</tr>
+<tr>
+  <th>PercentSalaryHike</th>                    <td>   -0.0123</td> <td>    0.025</td> <td>   -0.499</td> <td> 0.618</td> <td>   -0.061</td> <td>    0.036</td>
+</tr>
+<tr>
+  <th>RelationshipSatisfaction</th>             <td>   -0.2574</td> <td>    0.082</td> <td>   -3.124</td> <td> 0.002</td> <td>   -0.419</td> <td>   -0.096</td>
+</tr>
+<tr>
+  <th>StockOptionLevel</th>                     <td>   -0.2085</td> <td>    0.158</td> <td>   -1.319</td> <td> 0.187</td> <td>   -0.518</td> <td>    0.101</td>
+</tr>
+<tr>
+  <th>TotalWorkingYears</th>                    <td>   -0.0599</td> <td>    0.029</td> <td>   -2.046</td> <td> 0.041</td> <td>   -0.117</td> <td>   -0.003</td>
+</tr>
+<tr>
+  <th>TrainingTimesLastYear</th>                <td>   -0.1900</td> <td>    0.073</td> <td>   -2.601</td> <td> 0.009</td> <td>   -0.333</td> <td>   -0.047</td>
+</tr>
+<tr>
+  <th>WorkLifeBalance</th>                      <td>   -0.3696</td> <td>    0.124</td> <td>   -2.986</td> <td> 0.003</td> <td>   -0.612</td> <td>   -0.127</td>
+</tr>
+<tr>
+  <th>YearsAtCompany</th>                       <td>    0.0939</td> <td>    0.039</td> <td>    2.414</td> <td> 0.016</td> <td>    0.018</td> <td>    0.170</td>
+</tr>
+<tr>
+  <th>YearsInCurrentRole</th>                   <td>   -0.1479</td> <td>    0.045</td> <td>   -3.253</td> <td> 0.001</td> <td>   -0.237</td> <td>   -0.059</td>
+</tr>
+<tr>
+  <th>YearsSinceLastPromotion</th>              <td>    0.1729</td> <td>    0.042</td> <td>    4.092</td> <td> 0.000</td> <td>    0.090</td> <td>    0.256</td>
+</tr>
+<tr>
+  <th>YearsWithCurrManager</th>                 <td>   -0.1349</td> <td>    0.047</td> <td>   -2.873</td> <td> 0.004</td> <td>   -0.227</td> <td>   -0.043</td>
+</tr>
+</table></div></div>
+</div>
+</section>
+<section id="optimized-model">
+<h3>Optimized Model<a class="headerlink" href="#optimized-model" title="Permalink to this heading">#</a></h3>
+<p>We eliminate variables related to: education, internal organization. This effect can be also achieved by a backward feature selection.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;extra&#39;</span><span class="p">]</span> <span class="o">=</span>  <span class="n">df</span><span class="p">[</span><span class="s1">&#39;MonthlyIncome&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">7000</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;MonthlyIncome_offset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#df[&#39;MonthlyIncome&#39;]-df.groupby([&#39;JobLevel&#39;])[&#39;MonthlyIncome&#39;].transform(&#39;mean&#39;) </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cols</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span><span class="n">c</span><span class="o">!=</span><span class="s1">&#39;Attrition&#39;</span> <span class="ow">and</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Department&#39;</span><span class="p">,</span><span class="s1">&#39;EducationField&#39;</span><span class="p">,</span><span class="s1">&#39;Education&#39;</span><span class="p">,</span><span class="s1">&#39;JobRole&#39;</span><span class="p">,</span><span class="s1">&#39;MonthlyRate&#39;</span><span class="p">,</span><span class="s1">&#39;DailyRate&#39;</span><span class="p">,</span><span class="s1">&#39;MonthlyIncome&#39;</span><span class="p">]</span> <span class="p">,</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;Attrition~&#39;</span><span class="o">+</span><span class="s1">&#39;+&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">glm</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span><span class="n">family</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Binomial</span><span class="p">())</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;BIC=</span><span class="si">%s</span><span class="s1">,ROCAUC=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">evaluate</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>BIC=-9632.475418517834,ROCAUC=0.8564613768346558
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.7/dist-packages/statsmodels/base/model.py:1294: RuntimeWarning: invalid value encountered in true_divide
+  return self.params / self.bse
+</pre></div>
+</div>
+<div class="output text_html"><table class="simpletable">
+<caption>Generalized Linear Model Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>       <td>Attrition</td>    <th>  No. Observations:  </th>  <td>  1470</td> 
+</tr>
+<tr>
+  <th>Model:</th>                  <td>GLM</td>       <th>  Df Residuals:      </th>  <td>  1445</td> 
+</tr>
+<tr>
+  <th>Model Family:</th>        <td>Binomial</td>     <th>  Df Model:          </th>  <td>    24</td> 
+</tr>
+<tr>
+  <th>Link Function:</th>         <td>logit</td>      <th>  Scale:             </th> <td>  1.0000</td>
+</tr>
+<tr>
+  <th>Method:</th>                <td>IRLS</td>       <th>  Log-Likelihood:    </th> <td> -452.97</td>
+</tr>
+<tr>
+  <th>Date:</th>            <td>Tue, 15 Jun 2021</td> <th>  Deviance:          </th> <td>  905.94</td>
+</tr>
+<tr>
+  <th>Time:</th>                <td>13:51:09</td>     <th>  Pearson chi2:      </th> <td>2.70e+03</td>
+</tr>
+<tr>
+  <th>No. Iterations:</th>          <td>6</td>        <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+                   <td></td>                      <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>Intercept</th>                           <td>    3.4931</td> <td>    0.939</td> <td>    3.721</td> <td> 0.000</td> <td>    1.653</td> <td>    5.333</td>
+</tr>
+<tr>
+  <th>BusinessTravel[T.Travel_Frequently]</th> <td>    1.9563</td> <td>    0.408</td> <td>    4.792</td> <td> 0.000</td> <td>    1.156</td> <td>    2.756</td>
+</tr>
+<tr>
+  <th>BusinessTravel[T.Travel_Rarely]</th>     <td>    1.1010</td> <td>    0.380</td> <td>    2.894</td> <td> 0.004</td> <td>    0.355</td> <td>    1.847</td>
+</tr>
+<tr>
+  <th>Gender[T.Male]</th>                      <td>    0.4081</td> <td>    0.179</td> <td>    2.285</td> <td> 0.022</td> <td>    0.058</td> <td>    0.758</td>
+</tr>
+<tr>
+  <th>MaritalStatus[T.Married]</th>            <td>    0.2974</td> <td>    0.260</td> <td>    1.146</td> <td> 0.252</td> <td>   -0.211</td> <td>    0.806</td>
+</tr>
+<tr>
+  <th>MaritalStatus[T.Single]</th>             <td>    1.1656</td> <td>    0.330</td> <td>    3.536</td> <td> 0.000</td> <td>    0.519</td> <td>    1.812</td>
+</tr>
+<tr>
+  <th>OverTime[T.Yes]</th>                     <td>    1.8267</td> <td>    0.184</td> <td>    9.943</td> <td> 0.000</td> <td>    1.467</td> <td>    2.187</td>
+</tr>
+<tr>
+  <th>extra[T.True]</th>                       <td>    1.2141</td> <td>    0.345</td> <td>    3.521</td> <td> 0.000</td> <td>    0.538</td> <td>    1.890</td>
+</tr>
+<tr>
+  <th>Age</th>                                 <td>   -0.0287</td> <td>    0.013</td> <td>   -2.210</td> <td> 0.027</td> <td>   -0.054</td> <td>   -0.003</td>
+</tr>
+<tr>
+  <th>DistanceFromHome</th>                    <td>    0.0438</td> <td>    0.010</td> <td>    4.240</td> <td> 0.000</td> <td>    0.024</td> <td>    0.064</td>
+</tr>
+<tr>
+  <th>EnvironmentSatisfaction</th>             <td>   -0.4217</td> <td>    0.079</td> <td>   -5.316</td> <td> 0.000</td> <td>   -0.577</td> <td>   -0.266</td>
+</tr>
+<tr>
+  <th>JobInvolvement</th>                      <td>   -0.5768</td> <td>    0.118</td> <td>   -4.869</td> <td> 0.000</td> <td>   -0.809</td> <td>   -0.345</td>
+</tr>
+<tr>
+  <th>JobLevel</th>                            <td>   -0.7269</td> <td>    0.193</td> <td>   -3.776</td> <td> 0.000</td> <td>   -1.104</td> <td>   -0.350</td>
+</tr>
+<tr>
+  <th>JobSatisfaction</th>                     <td>   -0.4120</td> <td>    0.078</td> <td>   -5.250</td> <td> 0.000</td> <td>   -0.566</td> <td>   -0.258</td>
+</tr>
+<tr>
+  <th>NumCompaniesWorked</th>                  <td>    0.1878</td> <td>    0.037</td> <td>    5.131</td> <td> 0.000</td> <td>    0.116</td> <td>    0.260</td>
+</tr>
+<tr>
+  <th>PercentSalaryHike</th>                   <td>   -0.0165</td> <td>    0.024</td> <td>   -0.697</td> <td> 0.486</td> <td>   -0.063</td> <td>    0.030</td>
+</tr>
+<tr>
+  <th>RelationshipSatisfaction</th>            <td>   -0.2781</td> <td>    0.080</td> <td>   -3.457</td> <td> 0.001</td> <td>   -0.436</td> <td>   -0.120</td>
+</tr>
+<tr>
+  <th>StockOptionLevel</th>                    <td>   -0.1930</td> <td>    0.148</td> <td>   -1.301</td> <td> 0.193</td> <td>   -0.484</td> <td>    0.098</td>
+</tr>
+<tr>
+  <th>TotalWorkingYears</th>                   <td>   -0.0746</td> <td>    0.028</td> <td>   -2.680</td> <td> 0.007</td> <td>   -0.129</td> <td>   -0.020</td>
+</tr>
+<tr>
+  <th>TrainingTimesLastYear</th>               <td>   -0.1543</td> <td>    0.070</td> <td>   -2.206</td> <td> 0.027</td> <td>   -0.291</td> <td>   -0.017</td>
+</tr>
+<tr>
+  <th>WorkLifeBalance</th>                     <td>   -0.2765</td> <td>    0.117</td> <td>   -2.356</td> <td> 0.018</td> <td>   -0.507</td> <td>   -0.046</td>
+</tr>
+<tr>
+  <th>YearsAtCompany</th>                      <td>    0.0961</td> <td>    0.037</td> <td>    2.567</td> <td> 0.010</td> <td>    0.023</td> <td>    0.170</td>
+</tr>
+<tr>
+  <th>YearsInCurrentRole</th>                  <td>   -0.1482</td> <td>    0.044</td> <td>   -3.372</td> <td> 0.001</td> <td>   -0.234</td> <td>   -0.062</td>
+</tr>
+<tr>
+  <th>YearsSinceLastPromotion</th>             <td>    0.1667</td> <td>    0.040</td> <td>    4.139</td> <td> 0.000</td> <td>    0.088</td> <td>    0.246</td>
+</tr>
+<tr>
+  <th>YearsWithCurrManager</th>                <td>   -0.1275</td> <td>    0.045</td> <td>   -2.843</td> <td> 0.004</td> <td>   -0.215</td> <td>   -0.040</td>
+</tr>
+<tr>
+  <th>MonthlyIncome_offset</th>                <td>         0</td> <td>        0</td> <td>      nan</td> <td>   nan</td> <td>        0</td> <td>        0</td>
+</tr>
+</table></div></div>
+</div>
+</section>
+<section id="models-for-hypothesis-testing">
+<h3>Models for Hypothesis Testing<a class="headerlink" href="#models-for-hypothesis-testing" title="Permalink to this heading">#</a></h3>
+<p>Do business travels affect more males or females?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+
+<span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;Attrition~0+JobSatisfaction+EnvironmentSatisfaction+RelationshipSatisfaction+MaritalStatus+OverTime+C(BusinessTravel):C(Gender)&#39;</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">glm</span><span class="p">(</span><span class="n">formula</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span><span class="n">family</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Binomial</span><span class="p">())</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">evaluate</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-9544.660489514874, 0.7766638947919554)
+</pre></div>
+</div>
+<div class="output text_html"><table class="simpletable">
+<caption>Generalized Linear Model Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>       <td>Attrition</td>    <th>  No. Observations:  </th>  <td>  1470</td> 
+</tr>
+<tr>
+  <th>Model:</th>                  <td>GLM</td>       <th>  Df Residuals:      </th>  <td>  1458</td> 
+</tr>
+<tr>
+  <th>Model Family:</th>        <td>Binomial</td>     <th>  Df Model:          </th>  <td>    11</td> 
+</tr>
+<tr>
+  <th>Link Function:</th>         <td>logit</td>      <th>  Scale:             </th> <td>  1.0000</td>
+</tr>
+<tr>
+  <th>Method:</th>                <td>IRLS</td>       <th>  Log-Likelihood:    </th> <td> -544.28</td>
+</tr>
+<tr>
+  <th>Date:</th>            <td>Tue, 15 Jun 2021</td> <th>  Deviance:          </th> <td>  1088.6</td>
+</tr>
+<tr>
+  <th>Time:</th>                <td>13:51:09</td>     <th>  Pearson chi2:      </th> <td>1.57e+03</td>
+</tr>
+<tr>
+  <th>No. Iterations:</th>          <td>6</td>        <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>     <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+                              <td></td>                                <th>coef</th>     <th>std err</th>      <th>z</th>      <th>P>|z|</th>  <th>[0.025</th>    <th>0.975]</th>  
+</tr>
+<tr>
+  <th>MaritalStatus[Divorced]</th>                                  <td>   -2.0147</td> <td>    0.735</td> <td>   -2.740</td> <td> 0.006</td> <td>   -3.456</td> <td>   -0.573</td>
+</tr>
+<tr>
+  <th>MaritalStatus[Married]</th>                                   <td>   -1.7198</td> <td>    0.721</td> <td>   -2.386</td> <td> 0.017</td> <td>   -3.133</td> <td>   -0.307</td>
+</tr>
+<tr>
+  <th>MaritalStatus[Single]</th>                                    <td>   -0.6988</td> <td>    0.719</td> <td>   -0.972</td> <td> 0.331</td> <td>   -2.107</td> <td>    0.710</td>
+</tr>
+<tr>
+  <th>OverTime[T.Yes]</th>                                          <td>    1.5926</td> <td>    0.162</td> <td>    9.827</td> <td> 0.000</td> <td>    1.275</td> <td>    1.910</td>
+</tr>
+<tr>
+  <th>C(Gender)[T.Male]</th>                                        <td>    0.8937</td> <td>    0.752</td> <td>    1.189</td> <td> 0.235</td> <td>   -0.580</td> <td>    2.367</td>
+</tr>
+<tr>
+  <th>C(BusinessTravel)[T.Travel_Frequently]:C(Gender)[Female]</th> <td>    1.9816</td> <td>    0.694</td> <td>    2.856</td> <td> 0.004</td> <td>    0.622</td> <td>    3.342</td>
+</tr>
+<tr>
+  <th>C(BusinessTravel)[T.Travel_Rarely]:C(Gender)[Female]</th>     <td>    1.0697</td> <td>    0.670</td> <td>    1.597</td> <td> 0.110</td> <td>   -0.243</td> <td>    2.382</td>
+</tr>
+<tr>
+  <th>C(BusinessTravel)[T.Travel_Frequently]:C(Gender)[Male]</th>   <td>    1.1700</td> <td>    0.427</td> <td>    2.741</td> <td> 0.006</td> <td>    0.333</td> <td>    2.007</td>
+</tr>
+<tr>
+  <th>C(BusinessTravel)[T.Travel_Rarely]:C(Gender)[Male]</th>       <td>    0.6403</td> <td>    0.391</td> <td>    1.636</td> <td> 0.102</td> <td>   -0.127</td> <td>    1.408</td>
+</tr>
+<tr>
+  <th>JobSatisfaction</th>                                          <td>   -0.3345</td> <td>    0.070</td> <td>   -4.796</td> <td> 0.000</td> <td>   -0.471</td> <td>   -0.198</td>
+</tr>
+<tr>
+  <th>EnvironmentSatisfaction</th>                                  <td>   -0.3489</td> <td>    0.071</td> <td>   -4.893</td> <td> 0.000</td> <td>   -0.489</td> <td>   -0.209</td>
+</tr>
+<tr>
+  <th>RelationshipSatisfaction</th>                                 <td>   -0.2010</td> <td>    0.071</td> <td>   -2.823</td> <td> 0.005</td> <td>   -0.341</td> <td>   -0.061</td>
+</tr>
+</table></div></div>
+</div>
+</section>
+</section>
+<section id="tf-model">
+<h2>TF Model<a class="headerlink" href="#tf-model" title="Permalink to this heading">#</a></h2>
+<p>We will build a model…</p>
+<section id="build-and-train">
+<h3>Build and Train<a class="headerlink" href="#build-and-train" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+
+<span class="c1"># Step 0 - build tensorlow data set (here: in memory; for larger datasets iterators can be consumed)</span>
+
+<span class="n">N_BATCH</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">x_cols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="o">!=</span><span class="s1">&#39;Attrition&#39;</span><span class="p">,</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+<span class="n">y_col</span> <span class="o">=</span> <span class="s1">&#39;Attrition&#39;</span>
+
+<span class="n">df_train</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">x_cols</span><span class="p">]</span>
+
+<span class="n">ds</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">((</span><span class="nb">dict</span><span class="p">(</span><span class="n">df_train</span><span class="p">[</span><span class="n">x_cols</span><span class="p">]),</span><span class="n">df</span><span class="p">[</span><span class="n">y_col</span><span class="p">]))</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">N_BATCH</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">400</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">as_numpy_iterator</span><span class="p">())</span>
+
+<span class="c1"># Step 1 - feature encoder</span>
+
+<span class="n">category_cols</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="ow">not</span> <span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">is_numeric_dtype</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">t</span><span class="p">)),</span><span class="n">x_cols</span><span class="p">)</span>
+<span class="n">category_cols</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">df</span><span class="p">[</span><span class="n">t</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()[</span><span class="mi">1</span><span class="p">:],</span><span class="n">category_cols</span><span class="p">),</span><span class="n">category_cols</span><span class="p">)</span>
+<span class="n">category_cols</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">feature_column</span><span class="o">.</span><span class="n">categorical_column_with_vocabulary_list</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span><span class="n">category_cols</span><span class="p">)</span>
+<span class="n">category_cols</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">feature_column</span><span class="o">.</span><span class="n">indicator_column</span><span class="p">,</span><span class="n">category_cols</span><span class="p">)</span>
+
+<span class="n">numeric_cols</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">is_numeric_dtype</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">t</span><span class="p">)),</span><span class="n">x_cols</span><span class="p">)</span>
+<span class="n">numeric_cols</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">feature_column</span><span class="o">.</span><span class="n">numeric_column</span><span class="p">,</span><span class="n">numeric_cols</span><span class="p">)</span>
+
+<span class="n">cols</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="n">category_cols</span><span class="p">,</span><span class="n">numeric_cols</span><span class="p">)</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span>
+
+<span class="c1"># Step 2 - linear model</span>
+
+<span class="k">class</span> <span class="nc">FeaturesLinModel</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+
+<span class="w">  </span><span class="sd">&#39;&#39;&#39; implements a logistic classifier with given tf features (of various type) &#39;&#39;&#39;</span>
+
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">features</span><span class="p">,</span><span class="n">n_class</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">FeaturesLinModel</span><span class="p">,</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">FeatureLayer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">DenseFeatures</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">NormalizeLayer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">BatchNormalization</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">DenseLayer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">n_class</span><span class="p">,</span>
+                                            <span class="n">kernel_regularizer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">regularizers</span><span class="o">.</span><span class="n">l1</span><span class="p">(</span><span class="mf">1e-3</span><span class="p">),</span>
+                                            <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">inputs</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">inputs</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FeatureLayer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">NormalizeLayer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">DenseLayer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span>
+
+<span class="c1"># Step 3 - train</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">FeaturesLinModel</span><span class="p">(</span><span class="n">cols</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(),</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">BinaryCrossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+
+
+<span class="c1"># roc_auc_score(df[&#39;Attrition&#39;],model(dict(df_train)).numpy().ravel())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>18400/18400 [==============================] - 64s 3ms/step - loss: 0.3140
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tensorflow.python.keras.callbacks.History at 0x7f59aacd3cd0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="deploy">
+<h3>Deploy<a class="headerlink" href="#deploy" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>#@title Model saving and versioning
+
+import os
+import tempfile
+
+MODEL_DIR = tempfile.gettempdir()
+os.environ[&quot;MODEL_DIR&quot;] = MODEL_DIR
+version = 1
+export_path = os.path.join(MODEL_DIR, str(version))
+print(&#39;export_path = {}\n&#39;.format(export_path))
+
+model.save(
+    export_path,
+    overwrite=True,
+    include_optimizer=True,
+    save_format=None,
+    signatures=None
+)
+
+print(&#39;\nSaved model:&#39;)
+!ls -l {export_path}
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>export_path = /tmp/1
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:absl:Function `_wrapped_model` contains input name(s) Age, BusinessTravel, DailyRate, Department, DistanceFromHome, Education, EducationField, EnvironmentSatisfaction, Gender, JobInvolvement, JobLevel, JobRole, JobSatisfaction, MaritalStatus, MonthlyIncome, MonthlyIncome_offset, MonthlyRate, NumCompaniesWorked, OverTime, PercentSalaryHike, RelationshipSatisfaction, StockOptionLevel, TotalWorkingYears, TrainingTimesLastYear, WorkLifeBalance, YearsAtCompany, YearsInCurrentRole, YearsSinceLastPromotion, YearsWithCurrManager with unsupported characters which will be renamed to age, businesstravel, dailyrate, department, distancefromhome, education, educationfield, environmentsatisfaction, gender, jobinvolvement, joblevel, jobrole, jobsatisfaction, maritalstatus, monthlyincome, monthlyincome_offset, monthlyrate, numcompaniesworked, overtime, percentsalaryhike, relationshipsatisfaction, stockoptionlevel, totalworkingyears, trainingtimeslastyear, worklifebalance, yearsatcompany, yearsincurrentrole, yearssincelastpromotion, yearswithcurrmanager in the SavedModel.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:tensorflow:Assets written to: /tmp/1/assets
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:tensorflow:Assets written to: /tmp/1/assets
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Saved model:
+total 900
+drwxr-xr-x 2 root root   4096 Jun 15 13:48 assets
+-rw-r--r-- 1 root root  17568 Jun 15 13:52 keras_metadata.pb
+-rw-r--r-- 1 root root 889513 Jun 15 13:52 saved_model.pb
+drwxr-xr-x 2 root root   4096 Jun 15 13:52 variables
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>#@title Model metadata
+
+!saved_model_cli show --dir {export_path} --all
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MetaGraphDef with tag-set: &#39;serve&#39; contains the following SignatureDefs:
+
+signature_def[&#39;__saved_model_init_op&#39;]:
+  The given SavedModel SignatureDef contains the following input(s):
+  The given SavedModel SignatureDef contains the following output(s):
+    outputs[&#39;__saved_model_init_op&#39;] tensor_info:
+        dtype: DT_INVALID
+        shape: unknown_rank
+        name: NoOp
+  Method name is: 
+
+signature_def[&#39;serving_default&#39;]:
+  The given SavedModel SignatureDef contains the following input(s):
+    inputs[&#39;Age&#39;] tensor_info:
+        dtype: DT_INT64
+        shape: (-1, 1)
+        name: serving_default_Age:0
+    inputs[&#39;BusinessTravel&#39;] tensor_info:
+        dtype: DT_STRING
+        shape: (-1, 1)
+        name: serving_default_BusinessTravel:0
+    inputs[&#39;DailyRate&#39;] tensor_info:
+        dtype: DT_INT64
+        shape: (-1, 1)
+        name: serving_default_DailyRate:0
+    inputs[&#39;Department&#39;] tensor_info:
+        dtype: DT_STRING
+        shape: (-1, 1)
+        name: serving_default_Department:0
+    inputs[&#39;DistanceFromHome&#39;] tensor_info:
+        dtype: DT_INT64
+        shape: (-1, 1)
+        name: serving_default_DistanceFromHome:0
+    inputs[&#39;Education&#39;] tensor_info:
+        dtype: DT_INT64
+        shape: (-1, 1)
+        name: serving_default_Education:0
+    inputs[&#39;EducationField&#39;] tensor_info:
+        dtype: DT_STRING
+        shape: (-1, 1)
+        name: serving_default_EducationField:0
+    inputs[&#39;EnvironmentSatisfaction&#39;] tensor_info:
+        dtype: DT_INT64
+        shape: (-1, 1)
+        name: serving_default_EnvironmentSatisfaction:0
+    inputs[&#39;Gender&#39;] tensor_info:
+        dtype: DT_STRING
+        shape: (-1, 1)
+        name: serving_default_Gender:0
+    inputs[&#39;JobInvolvement&#39;] tensor_info:
+        dtype: DT_INT64
+        shape: (-1, 1)
+        name: serving_default_JobInvolvement:0
+    inputs[&#39;JobLevel&#39;] tensor_info:
+        dtype: DT_INT64
+        shape: (-1, 1)
+        name: serving_default_JobLevel:0
+    inputs[&#39;JobRole&#39;] tensor_info:
+        dtype: DT_STRING
+        shape: (-1, 1)
+        name: serving_default_JobRole:0
+    inputs[&#39;JobSatisfaction&#39;] tensor_info:
+        dtype: DT_INT64
+        shape: (-1, 1)
+        name: serving_default_JobSatisfaction:0
+    inputs[&#39;MaritalStatus&#39;] tensor_info:
+        dtype: DT_STRING
+        shape: (-1, 1)
+        name: serving_default_MaritalStatus:0
+    inputs[&#39;MonthlyIncome&#39;] tensor_info:
+        dtype: DT_INT64
+        shape: (-1, 1)
+        name: serving_default_MonthlyIncome:0
+    inputs[&#39;MonthlyIncome_offset&#39;] tensor_info:
+        dtype: DT_INT64
+        shape: (-1, 1)
+        name: serving_default_MonthlyIncome_offset:0
+    inputs[&#39;MonthlyRate&#39;] tensor_info:
+        dtype: DT_INT64
+        shape: (-1, 1)
+        name: serving_default_MonthlyRate:0
+    inputs[&#39;NumCompaniesWorked&#39;] tensor_info:
+        dtype: DT_INT64
+        shape: (-1, 1)
+        name: serving_default_NumCompaniesWorked:0
+    inputs[&#39;OverTime&#39;] tensor_info:
+        dtype: DT_STRING
+        shape: (-1, 1)
+        name: serving_default_OverTime:0
+    inputs[&#39;PercentSalaryHike&#39;] tensor_info:
+        dtype: DT_INT64
+        shape: (-1, 1)
+        name: serving_default_PercentSalaryHike:0
+    inputs[&#39;RelationshipSatisfaction&#39;] tensor_info:
+        dtype: DT_INT64
+        shape: (-1, 1)
+        name: serving_default_RelationshipSatisfaction:0
+    inputs[&#39;StockOptionLevel&#39;] tensor_info:
+        dtype: DT_INT64
+        shape: (-1, 1)
+        name: serving_default_StockOptionLevel:0
+    inputs[&#39;TotalWorkingYears&#39;] tensor_info:
+        dtype: DT_INT64
+        shape: (-1, 1)
+        name: serving_default_TotalWorkingYears:0
+    inputs[&#39;TrainingTimesLastYear&#39;] tensor_info:
+        dtype: DT_INT64
+        shape: (-1, 1)
+        name: serving_default_TrainingTimesLastYear:0
+    inputs[&#39;WorkLifeBalance&#39;] tensor_info:
+        dtype: DT_INT64
+        shape: (-1, 1)
+        name: serving_default_WorkLifeBalance:0
+    inputs[&#39;YearsAtCompany&#39;] tensor_info:
+        dtype: DT_INT64
+        shape: (-1, 1)
+        name: serving_default_YearsAtCompany:0
+    inputs[&#39;YearsInCurrentRole&#39;] tensor_info:
+        dtype: DT_INT64
+        shape: (-1, 1)
+        name: serving_default_YearsInCurrentRole:0
+    inputs[&#39;YearsSinceLastPromotion&#39;] tensor_info:
+        dtype: DT_INT64
+        shape: (-1, 1)
+        name: serving_default_YearsSinceLastPromotion:0
+    inputs[&#39;YearsWithCurrManager&#39;] tensor_info:
+        dtype: DT_INT64
+        shape: (-1, 1)
+        name: serving_default_YearsWithCurrManager:0
+    inputs[&#39;extra&#39;] tensor_info:
+        dtype: DT_BOOL
+        shape: (-1, 1)
+        name: serving_default_extra:0
+  The given SavedModel SignatureDef contains the following output(s):
+    outputs[&#39;output_1&#39;] tensor_info:
+        dtype: DT_FLOAT
+        shape: (-1, 1)
+        name: StatefulPartitionedCall_7:0
+  Method name is: tensorflow/serving/predict
+WARNING: Logging before flag parsing goes to stderr.
+W0615 13:52:20.858264 140127040939904 deprecation.py:506] From /usr/local/lib/python2.7/dist-packages/tensorflow_core/python/ops/resource_variable_ops.py:1786: calling __init__ (from tensorflow.python.ops.resource_variable_ops) with constraint is deprecated and will be removed in a future version.
+Instructions for updating:
+If using Keras pass *_constraint arguments to layers.
+2021-06-15 13:52:20.963601: I tensorflow/stream_executor/platform/default/dso_loader.cc:44] Successfully opened dynamic library libcuda.so.1
+2021-06-15 13:52:20.974260: E tensorflow/stream_executor/cuda/cuda_driver.cc:351] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+2021-06-15 13:52:20.974321: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (9c65e55638cf): /proc/driver/nvidia/version does not exist
+2021-06-15 13:52:20.981267: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2199995000 Hz
+2021-06-15 13:52:20.981533: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55f1bac1ef40 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2021-06-15 13:52:20.981573: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+
+Defined Functions:
+  Function Name: &#39;__call__&#39;
+    Option #1
+      Callable with:
+        Argument #1
+          DType: dict
+          Value: {&#39;PercentSalaryHike&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;PercentSalaryHike&#39;), &#39;RelationshipSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;RelationshipSatisfaction&#39;), &#39;extra&#39;: TensorSpec(shape=(None, 1), dtype=tf.bool, name=u&#39;extra&#39;), &#39;EnvironmentSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;EnvironmentSatisfaction&#39;), &#39;MonthlyRate&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;MonthlyRate&#39;), &#39;Department&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;Department&#39;), &#39;JobLevel&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;JobLevel&#39;), &#39;TotalWorkingYears&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;TotalWorkingYears&#39;), &#39;JobInvolvement&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;JobInvolvement&#39;), &#39;MaritalStatus&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;MaritalStatus&#39;), &#39;YearsSinceLastPromotion&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;YearsSinceLastPromotion&#39;), &#39;StockOptionLevel&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;StockOptionLevel&#39;), &#39;DailyRate&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;DailyRate&#39;), &#39;Gender&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;Gender&#39;), &#39;Age&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;Age&#39;), &#39;YearsWithCurrManager&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;YearsWithCurrManager&#39;), &#39;WorkLifeBalance&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;WorkLifeBalance&#39;), &#39;BusinessTravel&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;BusinessTravel&#39;), &#39;JobSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;JobSatisfaction&#39;), &#39;EducationField&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;EducationField&#39;), &#39;JobRole&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;JobRole&#39;), &#39;NumCompaniesWorked&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;NumCompaniesWorked&#39;), &#39;MonthlyIncome_offset&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;MonthlyIncome_offset&#39;), &#39;YearsInCurrentRole&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;YearsInCurrentRole&#39;), &#39;YearsAtCompany&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;YearsAtCompany&#39;), &#39;TrainingTimesLastYear&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;TrainingTimesLastYear&#39;), &#39;MonthlyIncome&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;MonthlyIncome&#39;), &#39;OverTime&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;OverTime&#39;), &#39;DistanceFromHome&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;DistanceFromHome&#39;), &#39;Education&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;Education&#39;), }
+        Argument #2
+          DType: bool
+          Value: True
+    Option #2
+      Callable with:
+        Argument #1
+          DType: dict
+          Value: {&#39;PercentSalaryHike&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/PercentSalaryHike&#39;), &#39;RelationshipSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/RelationshipSatisfaction&#39;), &#39;extra&#39;: TensorSpec(shape=(None, 1), dtype=tf.bool, name=u&#39;inputs/extra&#39;), &#39;EnvironmentSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/EnvironmentSatisfaction&#39;), &#39;MonthlyRate&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/MonthlyRate&#39;), &#39;Department&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/Department&#39;), &#39;JobLevel&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/JobLevel&#39;), &#39;TotalWorkingYears&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/TotalWorkingYears&#39;), &#39;JobInvolvement&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/JobInvolvement&#39;), &#39;MaritalStatus&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/MaritalStatus&#39;), &#39;YearsSinceLastPromotion&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/YearsSinceLastPromotion&#39;), &#39;StockOptionLevel&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/StockOptionLevel&#39;), &#39;DailyRate&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/DailyRate&#39;), &#39;Gender&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/Gender&#39;), &#39;Age&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/Age&#39;), &#39;YearsWithCurrManager&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/YearsWithCurrManager&#39;), &#39;WorkLifeBalance&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/WorkLifeBalance&#39;), &#39;BusinessTravel&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/BusinessTravel&#39;), &#39;JobSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/JobSatisfaction&#39;), &#39;EducationField&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/EducationField&#39;), &#39;JobRole&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/JobRole&#39;), &#39;NumCompaniesWorked&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/NumCompaniesWorked&#39;), &#39;MonthlyIncome_offset&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/MonthlyIncome_offset&#39;), &#39;YearsInCurrentRole&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/YearsInCurrentRole&#39;), &#39;YearsAtCompany&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/YearsAtCompany&#39;), &#39;TrainingTimesLastYear&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/TrainingTimesLastYear&#39;), &#39;MonthlyIncome&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/MonthlyIncome&#39;), &#39;OverTime&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/OverTime&#39;), &#39;DistanceFromHome&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/DistanceFromHome&#39;), &#39;Education&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/Education&#39;), }
+        Argument #2
+          DType: bool
+          Value: True
+    Option #3
+      Callable with:
+        Argument #1
+          DType: dict
+          Value: {&#39;PercentSalaryHike&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;PercentSalaryHike&#39;), &#39;RelationshipSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;RelationshipSatisfaction&#39;), &#39;extra&#39;: TensorSpec(shape=(None, 1), dtype=tf.bool, name=u&#39;extra&#39;), &#39;EnvironmentSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;EnvironmentSatisfaction&#39;), &#39;MonthlyRate&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;MonthlyRate&#39;), &#39;Department&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;Department&#39;), &#39;JobLevel&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;JobLevel&#39;), &#39;TotalWorkingYears&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;TotalWorkingYears&#39;), &#39;JobInvolvement&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;JobInvolvement&#39;), &#39;MaritalStatus&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;MaritalStatus&#39;), &#39;YearsSinceLastPromotion&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;YearsSinceLastPromotion&#39;), &#39;StockOptionLevel&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;StockOptionLevel&#39;), &#39;DailyRate&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;DailyRate&#39;), &#39;Gender&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;Gender&#39;), &#39;Age&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;Age&#39;), &#39;YearsWithCurrManager&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;YearsWithCurrManager&#39;), &#39;WorkLifeBalance&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;WorkLifeBalance&#39;), &#39;BusinessTravel&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;BusinessTravel&#39;), &#39;JobSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;JobSatisfaction&#39;), &#39;EducationField&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;EducationField&#39;), &#39;JobRole&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;JobRole&#39;), &#39;NumCompaniesWorked&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;NumCompaniesWorked&#39;), &#39;MonthlyIncome_offset&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;MonthlyIncome_offset&#39;), &#39;YearsInCurrentRole&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;YearsInCurrentRole&#39;), &#39;YearsAtCompany&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;YearsAtCompany&#39;), &#39;TrainingTimesLastYear&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;TrainingTimesLastYear&#39;), &#39;MonthlyIncome&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;MonthlyIncome&#39;), &#39;OverTime&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;OverTime&#39;), &#39;DistanceFromHome&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;DistanceFromHome&#39;), &#39;Education&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;Education&#39;), }
+        Argument #2
+          DType: bool
+          Value: False
+    Option #4
+      Callable with:
+        Argument #1
+          DType: dict
+          Value: {&#39;PercentSalaryHike&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/PercentSalaryHike&#39;), &#39;RelationshipSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/RelationshipSatisfaction&#39;), &#39;extra&#39;: TensorSpec(shape=(None, 1), dtype=tf.bool, name=u&#39;inputs/extra&#39;), &#39;EnvironmentSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/EnvironmentSatisfaction&#39;), &#39;MonthlyRate&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/MonthlyRate&#39;), &#39;Department&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/Department&#39;), &#39;JobLevel&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/JobLevel&#39;), &#39;TotalWorkingYears&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/TotalWorkingYears&#39;), &#39;JobInvolvement&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/JobInvolvement&#39;), &#39;MaritalStatus&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/MaritalStatus&#39;), &#39;YearsSinceLastPromotion&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/YearsSinceLastPromotion&#39;), &#39;StockOptionLevel&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/StockOptionLevel&#39;), &#39;DailyRate&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/DailyRate&#39;), &#39;Gender&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/Gender&#39;), &#39;Age&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/Age&#39;), &#39;YearsWithCurrManager&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/YearsWithCurrManager&#39;), &#39;WorkLifeBalance&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/WorkLifeBalance&#39;), &#39;BusinessTravel&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/BusinessTravel&#39;), &#39;JobSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/JobSatisfaction&#39;), &#39;EducationField&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/EducationField&#39;), &#39;JobRole&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/JobRole&#39;), &#39;NumCompaniesWorked&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/NumCompaniesWorked&#39;), &#39;MonthlyIncome_offset&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/MonthlyIncome_offset&#39;), &#39;YearsInCurrentRole&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/YearsInCurrentRole&#39;), &#39;YearsAtCompany&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/YearsAtCompany&#39;), &#39;TrainingTimesLastYear&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/TrainingTimesLastYear&#39;), &#39;MonthlyIncome&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/MonthlyIncome&#39;), &#39;OverTime&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/OverTime&#39;), &#39;DistanceFromHome&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/DistanceFromHome&#39;), &#39;Education&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/Education&#39;), }
+        Argument #2
+          DType: bool
+          Value: False
+
+  Function Name: &#39;_default_save_signature&#39;
+    Option #1
+      Callable with:
+        Argument #1
+          DType: dict
+          Value: {&#39;PercentSalaryHike&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;PercentSalaryHike&#39;), &#39;RelationshipSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;RelationshipSatisfaction&#39;), &#39;extra&#39;: TensorSpec(shape=(None, 1), dtype=tf.bool, name=u&#39;extra&#39;), &#39;EnvironmentSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;EnvironmentSatisfaction&#39;), &#39;MonthlyRate&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;MonthlyRate&#39;), &#39;Department&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;Department&#39;), &#39;JobLevel&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;JobLevel&#39;), &#39;TotalWorkingYears&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;TotalWorkingYears&#39;), &#39;JobInvolvement&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;JobInvolvement&#39;), &#39;MaritalStatus&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;MaritalStatus&#39;), &#39;YearsSinceLastPromotion&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;YearsSinceLastPromotion&#39;), &#39;StockOptionLevel&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;StockOptionLevel&#39;), &#39;DailyRate&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;DailyRate&#39;), &#39;Gender&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;Gender&#39;), &#39;Age&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;Age&#39;), &#39;YearsWithCurrManager&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;YearsWithCurrManager&#39;), &#39;WorkLifeBalance&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;WorkLifeBalance&#39;), &#39;BusinessTravel&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;BusinessTravel&#39;), &#39;JobSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;JobSatisfaction&#39;), &#39;EducationField&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;EducationField&#39;), &#39;JobRole&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;JobRole&#39;), &#39;NumCompaniesWorked&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;NumCompaniesWorked&#39;), &#39;MonthlyIncome_offset&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;MonthlyIncome_offset&#39;), &#39;YearsInCurrentRole&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;YearsInCurrentRole&#39;), &#39;YearsAtCompany&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;YearsAtCompany&#39;), &#39;TrainingTimesLastYear&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;TrainingTimesLastYear&#39;), &#39;MonthlyIncome&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;MonthlyIncome&#39;), &#39;OverTime&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;OverTime&#39;), &#39;DistanceFromHome&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;DistanceFromHome&#39;), &#39;Education&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;Education&#39;), }
+
+  Function Name: &#39;call_and_return_all_conditional_losses&#39;
+    Option #1
+      Callable with:
+        Argument #1
+          DType: dict
+          Value: {&#39;PercentSalaryHike&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;PercentSalaryHike&#39;), &#39;RelationshipSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;RelationshipSatisfaction&#39;), &#39;extra&#39;: TensorSpec(shape=(None, 1), dtype=tf.bool, name=u&#39;extra&#39;), &#39;EnvironmentSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;EnvironmentSatisfaction&#39;), &#39;MonthlyRate&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;MonthlyRate&#39;), &#39;Department&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;Department&#39;), &#39;JobLevel&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;JobLevel&#39;), &#39;TotalWorkingYears&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;TotalWorkingYears&#39;), &#39;JobInvolvement&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;JobInvolvement&#39;), &#39;MaritalStatus&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;MaritalStatus&#39;), &#39;YearsSinceLastPromotion&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;YearsSinceLastPromotion&#39;), &#39;StockOptionLevel&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;StockOptionLevel&#39;), &#39;WorkLifeBalance&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;WorkLifeBalance&#39;), &#39;Gender&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;Gender&#39;), &#39;Age&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;Age&#39;), &#39;YearsWithCurrManager&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;YearsWithCurrManager&#39;), &#39;DailyRate&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;DailyRate&#39;), &#39;BusinessTravel&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;BusinessTravel&#39;), &#39;JobSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;JobSatisfaction&#39;), &#39;EducationField&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;EducationField&#39;), &#39;JobRole&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;JobRole&#39;), &#39;NumCompaniesWorked&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;NumCompaniesWorked&#39;), &#39;MonthlyIncome_offset&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;MonthlyIncome_offset&#39;), &#39;YearsInCurrentRole&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;YearsInCurrentRole&#39;), &#39;YearsAtCompany&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;YearsAtCompany&#39;), &#39;TrainingTimesLastYear&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;TrainingTimesLastYear&#39;), &#39;MonthlyIncome&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;MonthlyIncome&#39;), &#39;OverTime&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;OverTime&#39;), &#39;DistanceFromHome&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;DistanceFromHome&#39;), &#39;Education&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;Education&#39;), }
+        Argument #2
+          DType: bool
+          Value: True
+    Option #2
+      Callable with:
+        Argument #1
+          DType: dict
+          Value: {&#39;PercentSalaryHike&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/PercentSalaryHike&#39;), &#39;RelationshipSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/RelationshipSatisfaction&#39;), &#39;extra&#39;: TensorSpec(shape=(None, 1), dtype=tf.bool, name=u&#39;inputs/extra&#39;), &#39;EnvironmentSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/EnvironmentSatisfaction&#39;), &#39;MonthlyRate&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/MonthlyRate&#39;), &#39;Department&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/Department&#39;), &#39;JobLevel&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/JobLevel&#39;), &#39;TotalWorkingYears&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/TotalWorkingYears&#39;), &#39;JobInvolvement&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/JobInvolvement&#39;), &#39;MaritalStatus&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/MaritalStatus&#39;), &#39;YearsSinceLastPromotion&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/YearsSinceLastPromotion&#39;), &#39;StockOptionLevel&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/StockOptionLevel&#39;), &#39;DailyRate&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/DailyRate&#39;), &#39;Gender&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/Gender&#39;), &#39;Age&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/Age&#39;), &#39;YearsWithCurrManager&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/YearsWithCurrManager&#39;), &#39;WorkLifeBalance&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/WorkLifeBalance&#39;), &#39;BusinessTravel&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/BusinessTravel&#39;), &#39;JobSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/JobSatisfaction&#39;), &#39;EducationField&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/EducationField&#39;), &#39;JobRole&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/JobRole&#39;), &#39;NumCompaniesWorked&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/NumCompaniesWorked&#39;), &#39;MonthlyIncome_offset&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/MonthlyIncome_offset&#39;), &#39;YearsInCurrentRole&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/YearsInCurrentRole&#39;), &#39;YearsAtCompany&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/YearsAtCompany&#39;), &#39;TrainingTimesLastYear&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/TrainingTimesLastYear&#39;), &#39;MonthlyIncome&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/MonthlyIncome&#39;), &#39;OverTime&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/OverTime&#39;), &#39;DistanceFromHome&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/DistanceFromHome&#39;), &#39;Education&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/Education&#39;), }
+        Argument #2
+          DType: bool
+          Value: False
+    Option #3
+      Callable with:
+        Argument #1
+          DType: dict
+          Value: {&#39;PercentSalaryHike&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;PercentSalaryHike&#39;), &#39;RelationshipSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;RelationshipSatisfaction&#39;), &#39;extra&#39;: TensorSpec(shape=(None, 1), dtype=tf.bool, name=u&#39;extra&#39;), &#39;EnvironmentSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;EnvironmentSatisfaction&#39;), &#39;MonthlyRate&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;MonthlyRate&#39;), &#39;Department&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;Department&#39;), &#39;JobLevel&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;JobLevel&#39;), &#39;TotalWorkingYears&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;TotalWorkingYears&#39;), &#39;JobInvolvement&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;JobInvolvement&#39;), &#39;MaritalStatus&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;MaritalStatus&#39;), &#39;YearsSinceLastPromotion&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;YearsSinceLastPromotion&#39;), &#39;StockOptionLevel&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;StockOptionLevel&#39;), &#39;DailyRate&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;DailyRate&#39;), &#39;Gender&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;Gender&#39;), &#39;Age&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;Age&#39;), &#39;YearsWithCurrManager&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;YearsWithCurrManager&#39;), &#39;WorkLifeBalance&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;WorkLifeBalance&#39;), &#39;BusinessTravel&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;BusinessTravel&#39;), &#39;JobSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;JobSatisfaction&#39;), &#39;EducationField&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;EducationField&#39;), &#39;JobRole&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;JobRole&#39;), &#39;NumCompaniesWorked&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;NumCompaniesWorked&#39;), &#39;MonthlyIncome_offset&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;MonthlyIncome_offset&#39;), &#39;YearsInCurrentRole&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;YearsInCurrentRole&#39;), &#39;YearsAtCompany&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;YearsAtCompany&#39;), &#39;TrainingTimesLastYear&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;TrainingTimesLastYear&#39;), &#39;MonthlyIncome&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;MonthlyIncome&#39;), &#39;OverTime&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;OverTime&#39;), &#39;DistanceFromHome&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;DistanceFromHome&#39;), &#39;Education&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;Education&#39;), }
+        Argument #2
+          DType: bool
+          Value: False
+    Option #4
+      Callable with:
+        Argument #1
+          DType: dict
+          Value: {&#39;PercentSalaryHike&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/PercentSalaryHike&#39;), &#39;RelationshipSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/RelationshipSatisfaction&#39;), &#39;extra&#39;: TensorSpec(shape=(None, 1), dtype=tf.bool, name=u&#39;inputs/extra&#39;), &#39;EnvironmentSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/EnvironmentSatisfaction&#39;), &#39;MonthlyRate&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/MonthlyRate&#39;), &#39;Department&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/Department&#39;), &#39;JobLevel&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/JobLevel&#39;), &#39;TotalWorkingYears&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/TotalWorkingYears&#39;), &#39;JobInvolvement&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/JobInvolvement&#39;), &#39;MaritalStatus&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/MaritalStatus&#39;), &#39;YearsSinceLastPromotion&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/YearsSinceLastPromotion&#39;), &#39;StockOptionLevel&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/StockOptionLevel&#39;), &#39;WorkLifeBalance&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/WorkLifeBalance&#39;), &#39;Gender&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/Gender&#39;), &#39;Age&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/Age&#39;), &#39;YearsWithCurrManager&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/YearsWithCurrManager&#39;), &#39;DailyRate&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/DailyRate&#39;), &#39;BusinessTravel&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/BusinessTravel&#39;), &#39;JobSatisfaction&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/JobSatisfaction&#39;), &#39;EducationField&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/EducationField&#39;), &#39;JobRole&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/JobRole&#39;), &#39;NumCompaniesWorked&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/NumCompaniesWorked&#39;), &#39;MonthlyIncome_offset&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/MonthlyIncome_offset&#39;), &#39;YearsInCurrentRole&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/YearsInCurrentRole&#39;), &#39;YearsAtCompany&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/YearsAtCompany&#39;), &#39;TrainingTimesLastYear&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/TrainingTimesLastYear&#39;), &#39;MonthlyIncome&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/MonthlyIncome&#39;), &#39;OverTime&#39;: TensorSpec(shape=(None, 1), dtype=tf.string, name=u&#39;inputs/OverTime&#39;), &#39;DistanceFromHome&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/DistanceFromHome&#39;), &#39;Education&#39;: TensorSpec(shape=(None, 1), dtype=tf.int64, name=u&#39;inputs/Education&#39;), }
+        Argument #2
+          DType: bool
+          Value: True
+W0615 13:52:21.288386 140127040939904 util.py:144] Unresolved object in checkpoint: (root).FeatureLayer._resources.BusinessTravel.BusinessTravel_lookup._initializer
+W0615 13:52:21.288675 140127040939904 util.py:144] Unresolved object in checkpoint: (root).FeatureLayer._resources.Department.Department_lookup._initializer
+W0615 13:52:21.288774 140127040939904 util.py:144] Unresolved object in checkpoint: (root).FeatureLayer._resources.EducationField.EducationField_lookup._initializer
+W0615 13:52:21.288856 140127040939904 util.py:144] Unresolved object in checkpoint: (root).FeatureLayer._resources.Gender.Gender_lookup._initializer
+W0615 13:52:21.288945 140127040939904 util.py:144] Unresolved object in checkpoint: (root).FeatureLayer._resources.JobRole.JobRole_lookup._initializer
+W0615 13:52:21.289174 140127040939904 util.py:144] Unresolved object in checkpoint: (root).FeatureLayer._resources.MaritalStatus.MaritalStatus_lookup._initializer
+W0615 13:52:21.289266 140127040939904 util.py:144] Unresolved object in checkpoint: (root).FeatureLayer._resources.OverTime.OverTime_lookup._initializer
+W0615 13:52:21.289344 140127040939904 util.py:152] A checkpoint was restored (e.g. tf.train.Checkpoint.restore or tf.keras.Model.load_weights) but not all checkpointed values were used. See above for specific issues. Use expect_partial() on the load status object, e.g. tf.train.Checkpoint.restore(...).expect_partial(), to silence these warnings, or use assert_consumed() to make the check explicit. See https://www.tensorflow.org/guide/checkpoint#loading_mechanics for details.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>#@title Install TensorFlow Serving 
+!echo &quot;deb http://storage.googleapis.com/tensorflow-serving-apt stable tensorflow-model-server tensorflow-model-server-universal&quot; | tee /etc/apt/sources.list.d/tensorflow-serving.list &amp;&amp; \
+curl -s https://storage.googleapis.com/tensorflow-serving-apt/tensorflow-serving.release.pub.gpg | apt-key add -
+!apt -qq update
+!apt-get -q install tensorflow-model-server
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Start Model</span>
+<span class="o">%%</span><span class="n">bash</span> <span class="o">--</span><span class="n">bg</span> 
+<span class="n">nohup</span> <span class="n">tensorflow_model_server</span> <span class="o">--</span><span class="n">rest_api_port</span><span class="o">=</span><span class="mi">8501</span> <span class="o">--</span><span class="n">model_name</span><span class="o">=</span><span class="n">attrition_model</span> <span class="o">--</span><span class="n">model_base_path</span><span class="o">=</span><span class="s2">&quot;/attrition_model&quot;</span> <span class="o">&gt;</span><span class="n">server</span><span class="o">.</span><span class="n">log</span> <span class="mi">2</span><span class="o">&gt;&amp;</span><span class="mi">1</span>
+
+<span class="c1">#!ps aux | grep -i &quot;tensorflow_model_server&quot;</span>
+<span class="c1">#!kill -9 1971</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!ls
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>#@title Logs and Status
+!tail server.log
+
+!curl http://localhost:8501/v1/models/attrition_model
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="real-time-predictions">
+<h3>Real-Time Predictions<a class="headerlink" href="#real-time-predictions" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title User Input (Friendly API)</span>
+
+<span class="c1">## grab user data (interactive!)</span>
+
+<span class="n">Age</span> <span class="o">=</span> <span class="mi">41</span> <span class="c1">#@param </span>
+<span class="n">BusinessTravel</span> <span class="o">=</span> <span class="s1">&#39;Travel_Frequently&#39;</span> <span class="c1">#@param [&#39;Travel_Rarely&#39;, &#39;Travel_Frequently&#39;, &#39;Non-Travel&#39;]</span>
+<span class="n">DailyRate</span> <span class="o">=</span>  <span class="mi">1102</span> <span class="c1">#@param </span>
+<span class="n">Department</span> <span class="o">=</span> <span class="s1">&#39;Sales&#39;</span> <span class="c1">#@param [&#39;Sales&#39;, &#39;Research &amp; Development&#39;, &#39;Human Resources&#39;]</span>
+<span class="n">DistanceFromHome</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">#@param</span>
+<span class="n">Education</span> <span class="o">=</span>  <span class="mi">2</span><span class="c1">#@param </span>
+<span class="n">EducationField</span> <span class="o">=</span> <span class="s1">&#39;Human Resources&#39;</span> <span class="c1">#@param [&#39;Life Sciences&#39;, &#39;Other&#39;, &#39;Medical&#39;, &#39;Marketing&#39;,&#39;Technical Degree&#39;, &#39;Human Resources&#39;]</span>
+<span class="n">EnvironmentSatisfaction</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1">#@param</span>
+<span class="n">Gender</span> <span class="o">=</span> <span class="s1">&#39;Male&#39;</span> <span class="c1">#@param [&#39;Female&#39;, &#39;Male&#39;]</span>
+<span class="n">JobInvolvement</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1">#@param</span>
+<span class="n">JobLevel</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1">#@param</span>
+<span class="n">JobRole</span> <span class="o">=</span> <span class="s1">&#39;Sales Executive&#39;</span> <span class="c1">#@param [&#39;Sales Executive&#39;, &#39;Research Scientist&#39;, &#39;Laboratory Technician&#39;,&#39;Manufacturing Director&#39;,&#39;Healthcare Representative&#39;,&#39;Manager&#39;,&#39;Sales Representative&#39;, &#39;Research Director&#39;, &#39;Human Resources&#39;]</span>
+<span class="n">JobSatisfaction</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1">#@param</span>
+<span class="n">MaritalStatus</span> <span class="o">=</span> <span class="s1">&#39;Married&#39;</span> <span class="c1">#@param [&#39;Single&#39;, &#39;Married&#39;, &#39;Divorced&#39;]</span>
+<span class="n">MonthlyIncome</span> <span class="o">=</span> <span class="mi">5993</span> <span class="c1">#@param</span>
+<span class="n">MonthlyRate</span> <span class="o">=</span> <span class="mi">19479</span> <span class="c1">#@param</span>
+<span class="n">NumCompaniesWorked</span> <span class="o">=</span> <span class="mi">8</span> <span class="c1">#@param</span>
+<span class="n">OverTime</span> <span class="o">=</span> <span class="s1">&#39;Yes&#39;</span> <span class="c1">#@param [&#39;Yes&#39;,&#39;No&#39;]</span>
+<span class="n">PercentSalaryHike</span> <span class="o">=</span> <span class="mi">11</span> <span class="c1">#@param </span>
+<span class="n">RelationshipSatisfaction</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">#@param</span>
+<span class="n">StockOptionLevel</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#@param</span>
+<span class="n">TotalWorkingYears</span> <span class="o">=</span> <span class="mi">8</span> <span class="c1">#@param</span>
+<span class="n">TrainingTimesLastYear</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#@param</span>
+<span class="n">WorkLifeBalance</span> <span class="o">=</span>  <span class="mi">2</span><span class="c1">#@param</span>
+<span class="n">YearsAtCompany</span> <span class="o">=</span>  <span class="mi">1</span><span class="c1">#@param</span>
+<span class="n">YearsInCurrentRole</span> <span class="o">=</span>  <span class="mi">1</span><span class="c1">#@param</span>
+<span class="n">YearsSinceLastPromotion</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#@param</span>
+<span class="n">YearsWithCurrManager</span> <span class="o">=</span>  <span class="mi">1</span><span class="c1">#@param</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+  <span class="n">Age</span><span class="o">=</span><span class="n">Age</span><span class="p">,</span>
+  <span class="n">BusinessTravel</span><span class="o">=</span><span class="n">BusinessTravel</span><span class="p">,</span>
+  <span class="n">DailyRate</span><span class="o">=</span><span class="n">DailyRate</span><span class="p">,</span>
+  <span class="n">Department</span><span class="o">=</span><span class="n">Department</span><span class="p">,</span>
+  <span class="n">DistanceFromHome</span><span class="o">=</span><span class="n">DistanceFromHome</span><span class="p">,</span>
+  <span class="n">Education</span><span class="o">=</span><span class="n">Education</span><span class="p">,</span>
+  <span class="n">EducationField</span><span class="o">=</span><span class="n">EducationField</span><span class="p">,</span>
+  <span class="n">EnvironmentSatisfaction</span><span class="o">=</span><span class="n">EnvironmentSatisfaction</span><span class="p">,</span>
+  <span class="n">Gender</span><span class="o">=</span><span class="n">Gender</span><span class="p">,</span>
+  <span class="n">JobInvolvement</span><span class="o">=</span><span class="n">JobInvolvement</span><span class="p">,</span>
+  <span class="n">JobLevel</span><span class="o">=</span><span class="n">JobLevel</span><span class="p">,</span>
+  <span class="n">JobRole</span><span class="o">=</span><span class="n">JobRole</span><span class="p">,</span>
+  <span class="n">JobSatisfaction</span><span class="o">=</span><span class="n">JobSatisfaction</span><span class="p">,</span>
+  <span class="n">MaritalStatus</span><span class="o">=</span><span class="n">MaritalStatus</span><span class="p">,</span>
+  <span class="n">MonthlyIncome</span><span class="o">=</span><span class="n">MonthlyIncome</span><span class="p">,</span>
+  <span class="n">MonthlyRate</span><span class="o">=</span><span class="n">MonthlyRate</span><span class="p">,</span>
+  <span class="n">NumCompaniesWorked</span><span class="o">=</span><span class="n">NumCompaniesWorked</span><span class="p">,</span>
+  <span class="n">OverTime</span><span class="o">=</span><span class="n">OverTime</span><span class="p">,</span>
+  <span class="n">PercentSalaryHike</span><span class="o">=</span><span class="n">PercentSalaryHike</span><span class="p">,</span>
+  <span class="n">RelationshipSatisfaction</span><span class="o">=</span><span class="n">RelationshipSatisfaction</span><span class="p">,</span>
+  <span class="n">StockOptionLevel</span><span class="o">=</span><span class="n">StockOptionLevel</span><span class="p">,</span>
+  <span class="n">TotalWorkingYears</span><span class="o">=</span><span class="n">TotalWorkingYears</span><span class="p">,</span>
+  <span class="n">TrainingTimesLastYear</span><span class="o">=</span><span class="n">TrainingTimesLastYear</span><span class="p">,</span>
+  <span class="n">WorkLifeBalance</span><span class="o">=</span><span class="n">WorkLifeBalance</span><span class="p">,</span>
+  <span class="n">YearsAtCompany</span><span class="o">=</span><span class="n">YearsAtCompany</span><span class="p">,</span>
+  <span class="n">YearsInCurrentRole</span><span class="o">=</span><span class="n">YearsInCurrentRole</span><span class="p">,</span>
+  <span class="n">YearsSinceLastPromotion</span><span class="o">=</span><span class="n">YearsSinceLastPromotion</span><span class="p">,</span>
+  <span class="n">YearsWithCurrManager</span><span class="o">=</span><span class="n">YearsWithCurrManager</span>
+<span class="p">)</span>
+
+<span class="c1">## serialize data</span>
+
+<span class="n">js</span> <span class="o">=</span> <span class="p">[{</span><span class="n">k</span><span class="p">:[</span><span class="n">v</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">x_cols</span><span class="p">}]</span>
+<span class="n">js</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;signature_name&quot;</span><span class="p">:</span> <span class="s2">&quot;serving_default&quot;</span><span class="p">,</span> <span class="s2">&quot;instances&quot;</span><span class="p">:</span> <span class="n">js</span><span class="p">})</span>
+
+<span class="c1">## prepare and send the request</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">}</span>
+<span class="n">js_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;http://localhost:8501/v1/models/attrition_model:predict&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">js</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+
+<span class="c1">## look at the response</span>
+<span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">js_response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling">Modeling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#non-trivial-model">Non-Trivial Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimized-model">Optimized Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#models-for-hypothesis-testing">Models for Hypothesis Testing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-model">TF Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-and-train">Build and Train</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deploy">Deploy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-time-predictions">Real-Time Predictions</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Maciej Skorski
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2018-2022, Maciej Skorski.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

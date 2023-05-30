@@ -1,0 +1,627 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Piecewise Linear Models &#8212; ML Code Examples  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'src/Bayes_PiecewiseLinModel';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">ML Code Examples  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/src/Bayes_PiecewiseLinModel.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Piecewise Linear Models</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploratory-analysis">Exploratory Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-model">Bayesian Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piecewise-model">Piecewise Model</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p><a href="https://colab.research.google.com/github/maciejskorski/ml_examples/blob/master/Bayes_PiecewiseLinModel.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<section id="piecewise-linear-models">
+<h1>Piecewise Linear Models<a class="headerlink" href="#piecewise-linear-models" title="Permalink to this heading">#</a></h1>
+<p>The main assumption of linear models is limitting in that there may be no fitting global trend in data, but different regions have their own local behavior. For example, when <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/Blood+Transfusion+Service+Center">predicting blood donation</a> one finds that
+while in general the chances for a next donation increase with the blood volume donated already, very high values indicate regular donors who are “extra”  likely to spend.</p>
+<p>Such situations are perfect case for piecewise linear models. The “knots”, values which breake local trends, can be found by the exploratory analysis or, more systematically, by fitting a <strong>bayesian model with thresholds being standalone parameters</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span># download data
+!curl https://archive.ics.uci.edu/ml/machine-learning-databases/blood-transfusion/transfusion.data -o transfusion.data
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 12843  100 12843    0     0  23608      0 --:--:-- --:--:-- --:--:-- 23608
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span># install dependencies for plotting traces
+!pip install arviz
+!pip uninstall pymc3
+!pip install pymc3&gt;=3.8
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: arviz in /usr/local/lib/python3.7/dist-packages (0.11.2)
+Requirement already satisfied: scipy&gt;=0.19 in /usr/local/lib/python3.7/dist-packages (from arviz) (1.4.1)
+Requirement already satisfied: netcdf4 in /usr/local/lib/python3.7/dist-packages (from arviz) (1.5.6)
+Requirement already satisfied: matplotlib&gt;=3.0 in /usr/local/lib/python3.7/dist-packages (from arviz) (3.2.2)
+Requirement already satisfied: setuptools&gt;=38.4 in /usr/local/lib/python3.7/dist-packages (from arviz) (56.0.0)
+Requirement already satisfied: packaging in /usr/local/lib/python3.7/dist-packages (from arviz) (20.9)
+Requirement already satisfied: numpy&gt;=1.12 in /usr/local/lib/python3.7/dist-packages (from arviz) (1.19.5)
+Requirement already satisfied: typing-extensions&lt;4,&gt;=3.7.4.3 in /usr/local/lib/python3.7/dist-packages (from arviz) (3.7.4.3)
+Requirement already satisfied: xarray&gt;=0.16.1 in /usr/local/lib/python3.7/dist-packages (from arviz) (0.17.0)
+Requirement already satisfied: pandas&gt;=0.23 in /usr/local/lib/python3.7/dist-packages (from arviz) (1.1.5)
+Requirement already satisfied: cftime in /usr/local/lib/python3.7/dist-packages (from netcdf4-&gt;arviz) (1.4.1)
+Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,&gt;=2.0.1 in /usr/local/lib/python3.7/dist-packages (from matplotlib&gt;=3.0-&gt;arviz) (2.4.7)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in /usr/local/lib/python3.7/dist-packages (from matplotlib&gt;=3.0-&gt;arviz) (1.3.1)
+Requirement already satisfied: cycler&gt;=0.10 in /usr/local/lib/python3.7/dist-packages (from matplotlib&gt;=3.0-&gt;arviz) (0.10.0)
+Requirement already satisfied: python-dateutil&gt;=2.1 in /usr/local/lib/python3.7/dist-packages (from matplotlib&gt;=3.0-&gt;arviz) (2.8.1)
+Requirement already satisfied: pytz&gt;=2017.2 in /usr/local/lib/python3.7/dist-packages (from pandas&gt;=0.23-&gt;arviz) (2018.9)
+Requirement already satisfied: six in /usr/local/lib/python3.7/dist-packages (from cycler&gt;=0.10-&gt;matplotlib&gt;=3.0-&gt;arviz) (1.15.0)
+Uninstalling pymc3-3.11.2:
+  Would remove:
+    /usr/local/lib/python3.7/dist-packages/pymc3-3.11.2.dist-info/*
+    /usr/local/lib/python3.7/dist-packages/pymc3/*
+Proceed (y/n)? y
+  Successfully uninstalled pymc3-3.11.2
+</pre></div>
+</div>
+</div>
+</div>
+<section id="exploratory-analysis">
+<h2>Exploratory Analysis<a class="headerlink" href="#exploratory-analysis" title="Permalink to this heading">#</a></h2>
+<p>By looking into the data we see that the impact of the blood volume spent may depend on the value regime.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sklearn</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;transfusion.data&#39;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Recency&#39;</span><span class="p">,</span><span class="s1">&#39;Frequency&#39;</span><span class="p">,</span><span class="s1">&#39;Monetary&#39;</span><span class="p">,</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span><span class="s1">&#39;Donated&#39;</span><span class="p">]</span>
+
+<span class="n">X</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]],</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+  <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">y</span><span class="o">==</span><span class="mi">0</span><span class="p">][</span><span class="n">c</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;no donation&#39;</span><span class="p">)</span>
+  <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">y</span><span class="o">==</span><span class="mi">1</span><span class="p">][</span><span class="n">c</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;donated&#39;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> vs Donation&#39;</span><span class="o">%</span><span class="n">c</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0bbbce5573ff9078b475c723793933e5cb6a103cdb47b5ddc39be23dd49a25d4.png" src="../_images/0bbbce5573ff9078b475c723793933e5cb6a103cdb47b5ddc39be23dd49a25d4.png" />
+<img alt="../_images/4922c2a570d58349a1d72c5ec109b0c9f79c059ef661318a802d8a4efcd81afc.png" src="../_images/4922c2a570d58349a1d72c5ec109b0c9f79c059ef661318a802d8a4efcd81afc.png" />
+<img alt="../_images/8afa4ae6d3b19618e5706f598dcb7a34a4fd76ddb00ff80a9b230fefa94a96c3.png" src="../_images/8afa4ae6d3b19618e5706f598dcb7a34a4fd76ddb00ff80a9b230fefa94a96c3.png" />
+<img alt="../_images/566823b914ceaae14e77c4c9c6ca44200a955af85ae15b811fd5c7dabaa1e09d.png" src="../_images/566823b914ceaae14e77c4c9c6ca44200a955af85ae15b811fd5c7dabaa1e09d.png" />
+</div>
+</div>
+</section>
+<section id="bayesian-model">
+<h2>Bayesian Model<a class="headerlink" href="#bayesian-model" title="Permalink to this heading">#</a></h2>
+<p>The bayesian model below finds the threshold for two different trends on the  volume spent (“Monetary”). Note that the data below are normalized.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
+
+<span class="n">base_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Recency&#39;</span><span class="p">,</span><span class="s1">&#39;Frequency&#39;</span><span class="p">,</span><span class="s1">&#39;Monetary&#39;</span><span class="p">,</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span>
+<span class="n">X_t</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">base_cols</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">X_t</span> <span class="o">=</span> <span class="n">X_t</span><span class="o">/</span><span class="n">X_t</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">X_t</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">y_t</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">values</span>
+
+<span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">bayes_model</span><span class="p">:</span>
+  <span class="n">w</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">,</span><span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">X_t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],))</span>
+  <span class="n">lin_pred</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Deterministic</span><span class="p">(</span><span class="s1">&#39;lin_pred&#39;</span><span class="p">,</span><span class="n">pm</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X_t</span><span class="p">,</span><span class="n">w</span><span class="p">))</span>
+  <span class="n">w_up</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;w_up&#39;</span><span class="p">,</span><span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+  <span class="n">threshold</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">,</span><span class="n">mu</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span><span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">lin_pred</span> <span class="o">=</span> <span class="n">lin_pred</span><span class="o">+</span><span class="p">(</span><span class="n">X_t</span><span class="p">[:,</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">&gt;</span><span class="n">threshold</span><span class="p">)</span><span class="o">*</span><span class="n">X_t</span><span class="p">[:,</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">w_up</span>
+
+  <span class="n">prob_pred</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">invlogit</span><span class="p">(</span><span class="n">lin_pred</span><span class="p">)</span>
+  <span class="n">logp</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Bernoulli</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;logit&#39;</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">prob_pred</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">y_t</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">bayes_model</span><span class="p">:</span>
+  <span class="n">trace</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">tune</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span>
+                         <span class="n">draws</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+                         <span class="n">chains</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                         <span class="n">init</span> <span class="o">=</span> <span class="s1">&#39;adapt_diag&#39;</span><span class="p">,</span>
+                         <span class="n">cores</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+  
+<span class="n">pm</span><span class="o">.</span><span class="n">plot_posterior</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span><span class="n">var_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;w&#39;</span><span class="p">,</span><span class="s1">&#39;w_up&#39;</span><span class="p">,</span><span class="s1">&#39;t&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING (theano.tensor.blas): We did not find a dynamic library in the library_dir of the library we use for blas. If you use ATLAS, make sure to compile it with dynamics library.
+/usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:24: FutureWarning: In v4.0, pm.sample will return an `arviz.InferenceData` object instead of a `MultiTrace` by default. You can pass return_inferencedata=True or return_inferencedata=False to be safe and silence this warning.
+Auto-assigning NUTS sampler...
+Initializing NUTS using adapt_diag...
+Multiprocess sampling (4 chains in 4 jobs)
+NUTS: [t, w_up, w]
+</pre></div>
+</div>
+<div class="output text_html">
+    <div>
+        <style>
+            /* Turns off some styling */
+            progress {
+                /* gets rid of default border in Firefox and Opera. */
+                border: none;
+                /* Needs to be in here for Safari polyfill so background images work as expected. */
+                background-size: auto;
+            }
+            .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+                background: #F44336;
+            }
+        </style>
+      <progress value='10000' class='' max='10000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+      100.00% [10000/10000 02:44<00:00 Sampling 4 chains, 0 divergences]
+    </div>
+    </div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 2_000 tune and 500 draw iterations (8_000 + 2_000 draws total) took 166 seconds.
+The rhat statistic is larger than 1.05 for some parameters. This indicates slight problems during sampling.
+The estimated number of effective samples is smaller than 200 for some parameters.
+/usr/local/lib/python3.7/dist-packages/arviz/data/io_pymc3.py:100: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
+  FutureWarning,
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f08fdc8e650&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f08fd19bb90&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f08fd152ed0&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f08fd10a850&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f08fd12ed10&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f08fd0f18d0&gt;]],
+      dtype=object)
+</pre></div>
+</div>
+<img alt="../_images/35ef1ad1f1946265e401d55aea33367ffcefc184478b3c0fb2f984183bc7cded.png" src="../_images/35ef1ad1f1946265e401d55aea33367ffcefc184478b3c0fb2f984183bc7cded.png" />
+</div>
+</div>
+</section>
+<section id="piecewise-model">
+<h2>Piecewise Model<a class="headerlink" href="#piecewise-model" title="Permalink to this heading">#</a></h2>
+<p>Introducing a separate slope for the regime of “high” blood volume improves the model as seen by BIC and cross-validated balanced accuracy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tools.eval_measures</span> <span class="kn">import</span> <span class="n">bic</span>
+
+<span class="c1"># baseline model</span>
+<span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;Donated~Recency+Frequency+Monetary+Time&#39;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">glm</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="n">formula</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span><span class="n">family</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Binomial</span><span class="p">())</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;BIC=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">bic</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">llf</span><span class="p">,</span><span class="n">model</span><span class="o">.</span><span class="n">nobs</span><span class="p">,</span><span class="n">model</span><span class="o">.</span><span class="n">df_model</span><span class="p">))</span>
+
+<span class="c1"># improved model</span>
+<span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;Donated~Recency+Frequency+Monetary:I(Monetary&gt;2000)+Time&#39;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">glm</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="n">formula</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span><span class="n">family</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Binomial</span><span class="p">())</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;BIC=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">bic</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">llf</span><span class="p">,</span><span class="n">model</span><span class="o">.</span><span class="n">nobs</span><span class="p">,</span><span class="n">model</span><span class="o">.</span><span class="n">df_model</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept     -0.4495      0.180     -2.493      0.013      -0.803      -0.096
+Recency       -0.0986      0.017     -5.693      0.000      -0.133      -0.065
+Frequency   2.166e-06   4.11e-07      5.274      0.000    1.36e-06    2.97e-06
+Monetary       0.0005      0.000      5.274      0.000       0.000       0.001
+Time          -0.0231      0.006     -3.872      0.000      -0.035      -0.011
+==============================================================================
+BIC=727.7190055572008
+======================================================================================================
+                                         coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------------------------------
+Intercept                             -0.9161      0.219     -4.190      0.000      -1.345      -0.488
+Recency                               -0.0973      0.018     -5.487      0.000      -0.132      -0.063
+Frequency                           7.761e-06   1.21e-06      6.389      0.000    5.38e-06    1.01e-05
+Monetary:I(Monetary &gt; 2000)[False]     0.0013      0.000      5.968      0.000       0.001       0.002
+Monetary:I(Monetary &gt; 2000)[True]      0.0007      0.000      6.003      0.000       0.000       0.001
+Time                                  -0.0283      0.006     -4.477      0.000      -0.041      -0.016
+======================================================================================================
+BIC=718.2837270116526
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">balanced_accuracy_score</span><span class="p">,</span><span class="n">make_scorer</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedKFold</span><span class="p">,</span><span class="n">cross_validate</span>
+
+<span class="c1">## baseline model</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">1234</span><span class="p">))</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">base_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Recency&#39;</span><span class="p">,</span><span class="s1">&#39;Frequency&#39;</span><span class="p">,</span><span class="s1">&#39;Monetary&#39;</span><span class="p">,</span><span class="s1">&#39;Time&#39;</span><span class="p">]</span>
+<span class="n">outs</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">X</span><span class="p">[</span><span class="n">base_cols</span><span class="p">],</span><span class="n">y</span><span class="p">,</span><span class="n">scoring</span><span class="o">=</span><span class="n">make_scorer</span><span class="p">(</span><span class="n">balanced_accuracy_score</span><span class="p">),</span><span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">)[</span><span class="s1">&#39;test_score&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">outs</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="n">outs</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+
+<span class="c1">## optimized model</span>
+<span class="n">X</span><span class="p">[</span><span class="s1">&#39;High Monetary&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Monetary&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">1000</span><span class="p">)</span><span class="o">*</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;Monetary&#39;</span><span class="p">]</span>
+
+<span class="n">outs</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">scoring</span><span class="o">=</span><span class="n">make_scorer</span><span class="p">(</span><span class="n">balanced_accuracy_score</span><span class="p">),</span><span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">)[</span><span class="s1">&#39;test_score&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">outs</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="n">outs</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5591847265221878 0.037280831695449865
+0.5796525627794977 0.044174035288943383
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploratory-analysis">Exploratory Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-model">Bayesian Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#piecewise-model">Piecewise Model</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Maciej Skorski
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2018-2022, Maciej Skorski.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

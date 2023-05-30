@@ -1,0 +1,1129 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Summary &#8212; ML Code Examples  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'src/Predicting_HeartDisease';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">ML Code Examples  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/src/Predicting_HeartDisease.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Summary</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-selection">Feature Selection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalized-linear-model-bic-selection">Generalized Linear Model (BIC Selection)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-comparison">Model Comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extras">Extras</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-fit">Improving Fit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explanatory-analysis">Explanatory Analysis :-)</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p><a href="https://colab.research.google.com/github/maciejskorski/ml_examples/blob/master/Predicting_HeartDisease.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<section id="summary">
+<h1>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h1>
+<p><strong>What are most important risk factors for heart diseases?</strong> We answer this question using
+the Cleveland UC Irvine challenge, which asks to predict a heart disease based on 13 predictors (both numeric and categorical):
+age, sex, chest pain symptoms, blood press,	cholesterol, blood sugar, rest ecg,	max heart rate,	exercise angina,	peak and slope on ecg, blocked vessels and	thallium test. This setup has been discussed many times as a toy or research problem, but this analysis prioritizes <em>robustness</em> to mitigate the selection bias (rarely addressed in other discussions).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>#@title Preprocessing 
+#@markdown  6 rows with missing data was skipped, leaving 297 partient records. The original names were changed to be more descriptive and different disease variants were merged into one (hdisease).   
+import pandas as pd
+_=!curl &quot;https://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data&quot; -o &quot;data.csv&quot;
+df=pd.read_csv(&#39;data.csv&#39;,header=None,skiprows=0)
+df.columns = [&#39;age&#39;,&#39;sex&#39;,&#39;chestpain&#39;,&#39;rest_bloodpress&#39;,&#39;cholesterol&#39;,&#39;bloodsugar&#39;,&#39;restecg&#39;,&#39;maxhrate&#39;,&#39;exangina&#39;,&#39;oldpeak&#39;,&#39;slope&#39;,&#39;blockedvessels&#39;,&#39;thallium&#39;,&#39;hdisease&#39;]
+# convert target (different deases are encoded)
+df[&#39;hdisease&#39;] = df[&#39;hdisease&#39;]&gt;0
+# drop few rows with NA values
+df=df.drop(df.index[(df==&#39;?&#39;).any(1)],axis=0)
+# force types
+df[&#39;blockedvessels&#39;] = df[&#39;blockedvessels&#39;].astype(&#39;float&#39;)
+df[&#39;thallium&#39;] = df[&#39;thallium&#39;].astype(&#39;float&#39;)
+# give meaningful labels
+#encoder = {1:&#39;typ_angin&#39;,2:&#39;atyp_angin&#39;,3:&#39;non-angin&#39;,4:&#39;asymptom&#39;}
+#df[&#39;chestpain&#39;] = df[&#39;chestpain&#39;].astype(&#39;int&#39;).apply(encoder.get)
+#encoder = {1:&#39;up&#39;,2:&#39;flat&#39;,3:&#39;down&#39;}
+#df[&#39;slope&#39;] = df[&#39;slope&#39;].astype(&#39;int&#39;).apply(encoder.get)
+#encoder = {3:&#39;norm&#39;,6:&#39;fixed&#39;,7:&#39;reversible&#39;}
+#df[&#39;thallium&#39;] = df[&#39;thallium&#39;].astype(&#39;int&#39;).apply(encoder.get)
+#encoder = {0:&#39;norm&#39;,1:&#39;abnorm&#39;,2:&#39;hypertrophy_evidence&#39;}
+#df[&#39;restecg&#39;] = df[&#39;restecg&#39;].astype(&#39;int&#39;).apply(encoder.get)
+# show rows
+#df.head()
+#print(df.head().to_markdown())
+#from IPython.display import display, HTML
+#display(HTML(df.head().to_html()))
+</pre></div>
+</div>
+</div>
+</div>
+<section id="feature-selection">
+<h2>Feature Selection<a class="headerlink" href="#feature-selection" title="Permalink to this heading">#</a></h2>
+<p><strong>Model</strong>: Random Forest (parameters adjusted to avoid overly complex trees) was used to estimate the importance of features. Rather than fitting it on the whole data, this solution cross-validates it to minimize the selection bias (interval estimates for importances)</p>
+<p><strong>Conclusions</strong> thallium test, blocked vessels, chest pains, exercise angina and certain ecg patterns are major contributting factors. These detailed diagnostics and symptoms are ranked higher than more general (age, sex) or causal (sugar level) predictors. Some of the ecg metrics have low importance, maybe they are overprovisioned?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Random Forest Model (Cross-Validated)</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">make_scorer</span><span class="p">,</span><span class="n">roc_auc_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">RFECV</span><span class="p">,</span><span class="n">SelectFromModel</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span><span class="p">,</span><span class="n">StratifiedKFold</span><span class="p">,</span><span class="n">cross_validate</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hdisease&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;f1&#39;</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span><span class="n">return_estimator</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ranks</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">out</span><span class="p">[</span><span class="s1">&#39;estimator&#39;</span><span class="p">]:</span>
+  <span class="n">ranks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+<span class="n">ranks</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ranks</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">ranks</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ranks</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ranks</span> <span class="o">=</span> <span class="n">ranks</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;score&#39;</span><span class="p">,</span><span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">ranks</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">vert</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span><span class="n">patch_artist</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Feature Importance (cross-validated random forest)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Importance (with std bars)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e3eec3298af4be932b111ec9e8479d32f727e1a87e5f9ab2a03e61a7d116066c.png" src="../_images/e3eec3298af4be932b111ec9e8479d32f727e1a87e5f9ab2a03e61a7d116066c.png" />
+</div>
+</div>
+</section>
+<section id="generalized-linear-model-bic-selection">
+<h2>Generalized Linear Model (BIC Selection)<a class="headerlink" href="#generalized-linear-model-bic-selection" title="Permalink to this heading">#</a></h2>
+<p><strong>Model</strong> <emph>Recursive Feature Elimination</emph> is used with Logistic Regression as the building block and Bayesian Information Criterion as the overfitting measure; in every round the least significant feature with p-value&gt;0.10 is deleted. The model was <em>optimized by introducing non-linearity</em> in form of “breaking points” at “extreme” levels of cholesterol, blood presure, age, heart rate etc.</p>
+<p><strong>Conclusions</strong> The strongest impact (by sigificance) comes as before from blocked vessels, chest pain (4=atypical), heart rate, thalllium. However this time age, sex and cholesterol are important. This may due to the protective estrogen impact, but why this was not seen in the previous model?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Logistic Regression</span>
+<span class="n">X_onehot</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">cat_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">,</span><span class="s1">&#39;chestpain&#39;</span><span class="p">,</span><span class="s1">&#39;restecg&#39;</span><span class="p">,</span><span class="s1">&#39;bloodsugar&#39;</span><span class="p">,</span><span class="s1">&#39;exangina&#39;</span><span class="p">,</span><span class="s1">&#39;slope&#39;</span><span class="p">,</span><span class="s1">&#39;thallium&#39;</span><span class="p">]</span>
+<span class="n">vals</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">names</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cat_vars</span><span class="p">:</span>
+  <span class="n">val</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">X_onehot</span><span class="p">[</span><span class="n">c</span><span class="p">])</span>
+  <span class="n">val</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="n">val</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+  <span class="n">X_onehot</span> <span class="o">=</span> <span class="n">X_onehot</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">val</span> <span class="o">=</span> <span class="n">val</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">val</span><span class="o">.</span><span class="n">columns</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]]</span>
+  <span class="n">val</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">c</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">val</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+  <span class="n">vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+
+<span class="n">X_onehot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">X_onehot</span><span class="p">,</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">X_onehot</span><span class="p">[</span><span class="s1">&#39;age&gt;55&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">X_onehot</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">57</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
+<span class="n">X_onehot</span><span class="p">[</span><span class="s1">&#39;cholesterol&gt;275&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">X_onehot</span><span class="p">[</span><span class="s1">&#39;cholesterol&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">275</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
+<span class="n">X_onehot</span><span class="p">[</span><span class="s1">&#39;rest_bloodpress&gt;150&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">X_onehot</span><span class="p">[</span><span class="s1">&#39;rest_bloodpress&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">150</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
+<span class="n">X_onehot</span><span class="p">[</span><span class="s1">&#39;maxhrate&gt;187&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">X_onehot</span><span class="p">[</span><span class="s1">&#39;maxhrate&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">170</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span>  <span class="k">as</span> <span class="nn">smf</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tools</span> <span class="kn">import</span> <span class="n">eval_measures</span>
+
+<span class="n">ftrs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">X_onehot</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">outs</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">end</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">end</span><span class="p">:</span>
+  <span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">exog</span><span class="o">=</span><span class="n">X_onehot</span><span class="p">[</span><span class="n">ftrs</span><span class="p">],</span> <span class="n">endog</span><span class="o">=</span><span class="n">y</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="n">family</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Binomial</span><span class="p">())</span>
+  <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+  <span class="n">worst</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">pvalues</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">pvalues</span><span class="p">[</span><span class="n">worst</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.10</span><span class="p">:</span>
+    <span class="n">outs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">ftrs</span><span class="p">[</span><span class="n">worst</span><span class="p">],</span><span class="n">eval_measures</span><span class="o">.</span><span class="n">bic</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">llf</span><span class="p">,</span><span class="n">model</span><span class="o">.</span><span class="n">nobs</span><span class="p">,</span><span class="n">model</span><span class="o">.</span><span class="n">df_model</span><span class="p">)))</span>
+    <span class="n">ftrs</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">ftrs</span><span class="p">[</span><span class="n">worst</span><span class="p">])</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">_</span><span class="o">=</span><span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span><span class="o">.</span><span class="n">tables</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;start BIC=</span><span class="si">%s</span><span class="s1">,end BIC=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">outs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span><span class="n">outs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>===================================================================================
+                      coef    std err          z      P&gt;|z|      [0.025      0.975]
+-----------------------------------------------------------------------------------
+age                -0.0850      0.028     -3.013      0.003      -0.140      -0.030
+rest_bloodpress     0.0209      0.010      2.002      0.045       0.000       0.041
+maxhrate           -0.0241      0.008     -3.002      0.003      -0.040      -0.008
+oldpeak             0.3447      0.199      1.735      0.083      -0.045       0.734
+blockedvessels      1.2773      0.269      4.746      0.000       0.750       1.805
+sex1.0              1.5233      0.480      3.175      0.001       0.583       2.464
+chestpain2.0        1.1261      0.607      1.854      0.064      -0.065       2.317
+chestpain4.0        1.8913      0.438      4.316      0.000       1.032       2.750
+exangina1.0         0.7620      0.446      1.710      0.087      -0.112       1.636
+slope2.0            1.0398      0.418      2.490      0.013       0.221       1.858
+thallium7.0         1.4390      0.405      3.549      0.000       0.644       2.234
+age&gt;55              1.4961      0.581      2.573      0.010       0.357       2.636
+cholesterol&gt;275     0.7882      0.464      1.698      0.089      -0.121       1.698
+===================================================================================
+start BIC=303.3493621912014,end BIC=261.21451062554183
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Diagnostic Plots</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">infl</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_influence</span><span class="p">()</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">infl</span><span class="o">.</span><span class="n">plot_index</span><span class="p">(</span><span class="n">y_var</span><span class="o">=</span><span class="s1">&#39;cooks&#39;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">3</span><span class="o">*</span><span class="mi">4</span><span class="o">/</span><span class="mi">300</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">infl</span><span class="o">.</span><span class="n">plot_index</span><span class="p">(</span><span class="n">y_var</span><span class="o">=</span><span class="s1">&#39;resid&#39;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8b6939e1c93ac49e58c022757d0798782a50063fbd6bc3b4e9e481eea2cd528d.png" src="../_images/8b6939e1c93ac49e58c022757d0798782a50063fbd6bc3b4e9e481eea2cd528d.png" />
+</div>
+</div>
+</section>
+<section id="model-comparison">
+<h2>Model Comparison<a class="headerlink" href="#model-comparison" title="Permalink to this heading">#</a></h2>
+<p>Both models give similar insights and are tested against overfitting. The simpler linear model actually achieves a sligthly better F1 score ($0.83\pm 0.06$ as opposed to $0.8\pm 0.05$, on cross-validation folds). The linear model can be extended into a hierarchical model which is aware of intra-cluster effects (e.g. effects common for group of patients) and be beneficial for tasks such as sample stratification. As a side remark, the literature reports that getting close to 0.9  is very hard.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">min_samples_leaf</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">random_state</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;f1&#39;</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="n">out</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">X_onehot</span><span class="p">[</span><span class="n">ftrs</span><span class="p">],</span><span class="n">y</span><span class="p">,</span><span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;f1&#39;</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="n">out</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8 0.05
+0.83 0.05
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="extras">
+<h2>Extras<a class="headerlink" href="#extras" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>#@title Export summary PDF
+%%capture
+from google.colab import drive
+drive.mount(&#39;/content/drive&#39;, force_remount=True)
+#_=!sudo apt-get install texlive-xetex texlive-fonts-recommended texlive-generic-recommended
+!jupyter nbconvert --no-input --template drive/MyDrive/Colab\ Notebooks/better_template --to PDF drive/MyDrive/Colab\ Notebooks/HeartDisease.ipynb --
+</pre></div>
+</div>
+</div>
+</div>
+<section id="improving-fit">
+<h3>Improving Fit<a class="headerlink" href="#improving-fit" title="Permalink to this heading">#</a></h3>
+<p>The fit is quite good as also confirmed by the diagnostic plots. The anomalies can be skipped to improve the fit (but does not change the insights); for example the person 218 is healthy despite several risk factors: 64-old, male, high cholesterol and blocked main vessels.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Improving Logistic Regression</span>
+<span class="n">X_onehot</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># see where are anomalies</span>
+<span class="n">blacklist</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">infl</span><span class="o">.</span><span class="n">summary_frame</span><span class="p">()[</span><span class="s1">&#39;standard_resid&#39;</span><span class="p">])</span><span class="o">&gt;</span><span class="mi">3</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">blacklist</span><span class="p">,]</span>
+
+<span class="n">vals</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">names</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cat_vars</span><span class="p">:</span>
+  <span class="n">val</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">X_onehot</span><span class="p">[</span><span class="n">c</span><span class="p">])</span>
+  <span class="n">val</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="n">val</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+  <span class="n">X_onehot</span> <span class="o">=</span> <span class="n">X_onehot</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">val</span> <span class="o">=</span> <span class="n">val</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">val</span><span class="o">.</span><span class="n">columns</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]]</span>
+  <span class="n">val</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">c</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">val</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+  <span class="n">vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+
+<span class="n">X_onehot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">X_onehot</span><span class="p">,</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">X_onehot</span><span class="p">[</span><span class="s1">&#39;age&gt;55&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">X_onehot</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">57</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
+<span class="n">X_onehot</span><span class="p">[</span><span class="s1">&#39;cholesterol&gt;275&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">X_onehot</span><span class="p">[</span><span class="s1">&#39;cholesterol&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">275</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
+<span class="n">X_onehot</span><span class="p">[</span><span class="s1">&#39;rest_bloodpress&gt;150&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">X_onehot</span><span class="p">[</span><span class="s1">&#39;rest_bloodpress&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">150</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
+<span class="n">X_onehot</span><span class="p">[</span><span class="s1">&#39;maxhrate&gt;187&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">X_onehot</span><span class="p">[</span><span class="s1">&#39;maxhrate&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">170</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span>  <span class="k">as</span> <span class="nn">smf</span>
+<span class="kn">from</span> <span class="nn">statsmodels.tools</span> <span class="kn">import</span> <span class="n">eval_measures</span>
+
+<span class="n">ftrs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">X_onehot</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">outs</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">end</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">end</span><span class="p">:</span>
+  <span class="n">model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">GLM</span><span class="p">(</span><span class="n">exog</span><span class="o">=</span><span class="n">X_onehot</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">blacklist</span><span class="p">][</span><span class="n">ftrs</span><span class="p">],</span> <span class="n">endog</span><span class="o">=</span><span class="n">y</span><span class="p">[</span><span class="o">~</span><span class="n">blacklist</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="n">family</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Binomial</span><span class="p">())</span>
+  <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+  <span class="n">worst</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">pvalues</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">pvalues</span><span class="p">[</span><span class="n">worst</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.2</span><span class="p">:</span>
+    <span class="n">outs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">ftrs</span><span class="p">[</span><span class="n">worst</span><span class="p">],</span><span class="n">eval_measures</span><span class="o">.</span><span class="n">bic</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">llf</span><span class="p">,</span><span class="n">model</span><span class="o">.</span><span class="n">nobs</span><span class="p">,</span><span class="n">model</span><span class="o">.</span><span class="n">df_model</span><span class="p">)))</span>
+    <span class="n">ftrs</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">ftrs</span><span class="p">[</span><span class="n">worst</span><span class="p">])</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">end</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;start BIC=</span><span class="si">%s</span><span class="s1">,end BIC=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">outs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span><span class="n">outs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]))</span>
+
+<span class="n">infl</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_influence</span><span class="p">()</span>
+
+<span class="n">fig</span><span class="p">,</span><span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">infl</span><span class="o">.</span><span class="n">plot_index</span><span class="p">(</span><span class="n">y_var</span><span class="o">=</span><span class="s1">&#39;cooks&#39;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">3</span><span class="o">*</span><span class="mi">4</span><span class="o">/</span><span class="mi">300</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">infl</span><span class="o">.</span><span class="n">plot_index</span><span class="p">(</span><span class="n">y_var</span><span class="o">=</span><span class="s1">&#39;resid&#39;</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">pad</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">X_onehot</span><span class="p">[</span><span class="n">ftrs</span><span class="p">],</span><span class="n">y</span><span class="p">,</span><span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;f1&#39;</span><span class="p">,</span><span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="n">out</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:               hdisease   No. Observations:                  289
+Model:                            GLM   Df Residuals:                      277
+Model Family:                Binomial   Df Model:                           11
+Link Function:                  logit   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -61.652
+Date:                Sun, 25 Apr 2021   Deviance:                       123.30
+Time:                        09:59:41   Pearson chi2:                     167.
+No. Iterations:                     8                                         
+Covariance Type:            nonrobust                                         
+===================================================================================
+                      coef    std err          z      P&gt;|z|      [0.025      0.975]
+-----------------------------------------------------------------------------------
+age                -0.1413      0.038     -3.732      0.000      -0.216      -0.067
+rest_bloodpress     0.0353      0.013      2.676      0.007       0.009       0.061
+maxhrate           -0.0381      0.011     -3.464      0.001      -0.060      -0.017
+oldpeak             0.5623      0.267      2.105      0.035       0.039       1.086
+blockedvessels      2.6141      0.458      5.712      0.000       1.717       3.511
+sex1.0              2.1872      0.671      3.258      0.001       0.872       3.503
+chestpain2.0        2.5214      0.833      3.026      0.002       0.888       4.155
+chestpain4.0        3.2176      0.657      4.898      0.000       1.930       4.505
+exangina1.0         0.8393      0.551      1.523      0.128      -0.241       1.919
+slope2.0            2.0913      0.595      3.514      0.000       0.925       3.258
+thallium7.0         2.5744      0.563      4.571      0.000       1.470       3.678
+age&gt;55              2.3342      0.769      3.035      0.002       0.827       3.842
+===================================================================================
+start BIC=236.67781113698356,end BIC=189.70047038995267
+0.8408952267775798 0.04437827383453979
+</pre></div>
+</div>
+<img alt="../_images/5e739d6433372bd3dd8cb5b02234bd494bd26bd6ffbbfc6ec34c2037bff1a5b3.png" src="../_images/5e739d6433372bd3dd8cb5b02234bd494bd26bd6ffbbfc6ec34c2037bff1a5b3.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="explanatory-analysis">
+<h2>Explanatory Analysis :-)<a class="headerlink" href="#explanatory-analysis" title="Permalink to this heading">#</a></h2>
+<p>We will have a look and see if the features discriminate the response (information-theoretically).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Gender Impact </span>
+<span class="c1">#@markdown Being a female looks like an advantage. Probably this &quot;estrogen&quot; conjecture.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;sex&#39;</span><span class="p">)[[</span><span class="s1">&#39;hdisease&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>hdisease</th>
+    </tr>
+    <tr>
+      <th>sex</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.0</th>
+      <td>0.260417</td>
+    </tr>
+    <tr>
+      <th>1.0</th>
+      <td>0.557214</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Chest Pain Impact </span>
+<span class="c1">#@markdown The risk goes up with pain of type 4, which is &quot;asymptomatic&quot; wrt anginal symptoms.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;chestpain&#39;</span><span class="p">)[[</span><span class="s1">&#39;hdisease&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>hdisease</th>
+    </tr>
+    <tr>
+      <th>chestpain</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1.0</th>
+      <td>0.304348</td>
+    </tr>
+    <tr>
+      <th>2.0</th>
+      <td>0.183673</td>
+    </tr>
+    <tr>
+      <th>3.0</th>
+      <td>0.216867</td>
+    </tr>
+    <tr>
+      <th>4.0</th>
+      <td>0.725352</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Blood Sugar Impact </span>
+<span class="c1">#@markdown The sugar alone revels no information on the target. I suppose it is cousal: indirectly triggers other precise metrics.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;bloodsugar&#39;</span><span class="p">)[[</span><span class="s1">&#39;hdisease&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>hdisease</th>
+    </tr>
+    <tr>
+      <th>bloodsugar</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.0</th>
+      <td>0.460630</td>
+    </tr>
+    <tr>
+      <th>1.0</th>
+      <td>0.465116</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Rest ECG Impact </span>
+<span class="c1">#@markdown Value 1 appears with higher risk. It encodes &quot;ST-T abnormality&quot;, so this makes sense.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;restecg&#39;</span><span class="p">)[[</span><span class="s1">&#39;hdisease&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>hdisease</th>
+    </tr>
+    <tr>
+      <th>restecg</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.0</th>
+      <td>0.374150</td>
+    </tr>
+    <tr>
+      <th>1.0</th>
+      <td>0.750000</td>
+    </tr>
+    <tr>
+      <th>2.0</th>
+      <td>0.541096</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Exercise-induced Angina Impact </span>
+<span class="c1">#@markdown This is a known risk factor, visible in the data.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;exangina&#39;</span><span class="p">)[[</span><span class="s1">&#39;hdisease&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+	
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>hdisease</th>
+    </tr>
+    <tr>
+      <th>exangina</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.0</th>
+      <td>0.315000</td>
+    </tr>
+    <tr>
+      <th>1.0</th>
+      <td>0.762887</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Blocked Major Vessels Impact </span>
+<span class="c1">#@markdown The more, the worse! Also known to the literature.</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;blockedvessels&#39;</span><span class="p">)[[</span><span class="s1">&#39;hdisease&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+	
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>hdisease</th>
+    </tr>
+    <tr>
+      <th>blockedvessels</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0.0</th>
+      <td>0.258621</td>
+    </tr>
+    <tr>
+      <th>1.0</th>
+      <td>0.676923</td>
+    </tr>
+    <tr>
+      <th>2.0</th>
+      <td>0.815789</td>
+    </tr>
+    <tr>
+      <th>3.0</th>
+      <td>0.850000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Thallium Test Impact </span>
+<span class="c1">#@markdown The value of 3, which is the &quot;normal reading&quot;, decreases the risk (again makes sense)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;thallium&#39;</span><span class="p">)[[</span><span class="s1">&#39;hdisease&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+	
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>hdisease</th>
+    </tr>
+    <tr>
+      <th>thallium</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3.0</th>
+      <td>0.225610</td>
+    </tr>
+    <tr>
+      <th>6.0</th>
+      <td>0.666667</td>
+    </tr>
+    <tr>
+      <th>7.0</th>
+      <td>0.765217</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Cholesterol</span>
+<span class="c1">#@markdown There is some impact from  very high cholesterol levels.</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hdisease&#39;</span><span class="p">]</span><span class="o">==</span><span class="kc">True</span>
+<span class="n">df</span><span class="p">[</span><span class="n">mask</span><span class="p">][</span><span class="s1">&#39;cholesterol&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">kde</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;disease&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">mask</span><span class="p">][</span><span class="s1">&#39;cholesterol&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">kde</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;no disease&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff9c7c539d0&gt;
+</pre></div>
+</div>
+<img alt="../_images/26deb9289dfa3e8a03aa79c362bcae5adb38765b64868f276ddd74ea91e28c9a.png" src="../_images/26deb9289dfa3e8a03aa79c362bcae5adb38765b64868f276ddd74ea91e28c9a.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#@title Max Heart Rate</span>
+<span class="c1">#@markdown There is some impact but negative, from  the high heart rate, don&#39;t understand what is is this. I think this may have something to do with young age?</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hdisease&#39;</span><span class="p">]</span><span class="o">==</span><span class="kc">True</span>
+<span class="n">df</span><span class="p">[</span><span class="n">mask</span><span class="p">][</span><span class="s1">&#39;maxhrate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">kde</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;disease&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="o">~</span><span class="n">mask</span><span class="p">][</span><span class="s1">&#39;maxhrate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">kde</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;no disease&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff9c3b78d50&gt;
+</pre></div>
+</div>
+<img alt="../_images/58a43b04b7c80d3bdaf8b3bce9aa36e11b42957e2032ac1522e17c43c1da85d2.png" src="../_images/58a43b04b7c80d3bdaf8b3bce9aa36e11b42957e2032ac1522e17c43c1da85d2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>#@title Export Full PDF
+%%capture
+from google.colab import drive
+drive.mount(&#39;/content/drive&#39;, force_remount=True)
+#_=!sudo apt-get install texlive-xetex texlive-fonts-recommended texlive-generic-recommended
+!jupyter nbconvert --template drive/MyDrive/Colab\ Notebooks/better_template --to PDF drive/MyDrive/Colab\ Notebooks/HeartDisease.ipynb --
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X_onehot</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">218</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>age                     64.0
+rest_bloodpress        130.0
+cholesterol            303.0
+maxhrate               122.0
+oldpeak                  2.0
+blockedvessels           2.0
+sex1.0                   0.0
+chestpain2.0             0.0
+chestpain3.0             0.0
+chestpain4.0             1.0
+restecg1.0               0.0
+restecg2.0               0.0
+bloodsugar1.0            0.0
+exangina1.0              0.0
+slope2.0                 1.0
+slope3.0                 0.0
+thallium6.0              0.0
+thallium7.0              0.0
+age&gt;55                   1.0
+cholesterol&gt;275          1.0
+rest_bloodpress&gt;150      0.0
+maxhrate&gt;187             0.0
+Name: 218, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-selection">Feature Selection</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalized-linear-model-bic-selection">Generalized Linear Model (BIC Selection)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-comparison">Model Comparison</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extras">Extras</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-fit">Improving Fit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#explanatory-analysis">Explanatory Analysis :-)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Maciej Skorski
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2018-2022, Maciej Skorski.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

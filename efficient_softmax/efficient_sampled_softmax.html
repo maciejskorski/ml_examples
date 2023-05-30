@@ -1,0 +1,582 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Efficient Sampled Softmax &#8212; ML Code Examples  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'efficient_softmax/efficient_sampled_softmax';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">ML Code Examples  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/efficient_softmax/efficient_sampled_softmax.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Efficient Sampled Softmax</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Efficient Sampled Softmax</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#test-correctness">Test correctness</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-speed">Compare speed</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p><a href="https://colab.research.google.com/github/maciejskorski/ml_examples/blob/master/efficient_softmax/efficient_sampled_softmax.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<section id="efficient-sampled-softmax">
+<h1>Efficient Sampled Softmax<a class="headerlink" href="#efficient-sampled-softmax" title="Permalink to this heading">#</a></h1>
+<p>This code simplifies and optimizes the default TF sampled softmax loss.
+The speedup in training can be by a factor of 2 for NLP tasks.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>%tensorflow_version 1.x
+import tensorflow as tf
+
+def sampled_softmax_loss(target_embed_kernel,labels,inputs_embed,
+                         samples,labels_prior,samples_prior,
+                         raw_inputs=None,embed_kernel_shapes=None):
+  &#39;&#39;&#39;
+    computes sampled softmax loss, more efficient than TF implementation
+    inputs: 
+    - class embeddings [N_BATCH,N_EMBED]
+    - true labels 
+      true classes [N_BATCH]
+    - embeded inputs 
+      inputs after forward activation [N_BATCH,N_EMBED]
+    - sampled candidates with sampling priors 
+      triple (samples,labels_prior,samples_prior) as computed by candidate sampler from tf)
+    - [optional] raw inputs and gradient shapes needed optimized backpropagation
+    outputs: 
+    - loss, scalar - mean over batch!
+    - [optional] gradients for embeddings in sparse form!, when inputs and shapes passed
+  &#39;&#39;&#39;
+  with tf.variable_scope(&#39;sampled_softmax&#39;):
+
+    with tf.variable_scope(&#39;target_embeddings&#39;):
+      samples_embed = tf.gather(target_embed_kernel,samples) # (N_SAMPLED,N_EMBED)
+      labels_embed = tf.gather(target_embed_kernel,labels,axis=0) # (N_BATCH,N_EMBED)
+
+    with tf.variable_scope(&#39;labels_logits&#39;):
+      labels_logits = tf.matmul(tf.expand_dims(labels_embed,1),tf.expand_dims(inputs_embed,-1)) # (N_BATCH,1,1)
+      labels_logits = tf.squeeze(labels_logits,-1) # N_BATCH,1
+      labels_logits = labels_logits-tf.log(labels_prior) # add prior-correction
+
+    with tf.variable_scope(&#39;sampl_logits&#39;):
+      samples_logits = tf.matmul(inputs_embed,samples_embed,transpose_b=True) # (N_BATCH,N_SAMPLED)
+      samples_logits = samples_logits-tf.log(samples_prior) # add prior-correction
+      
+    with tf.variable_scope(&#39;sampl_loss&#39;):
+      candidate_logits = tf.concat([samples_logits,labels_logits],axis=-1) # (N_BATCH,N_SAMPLED+1)
+      Z = tf.reduce_logsumexp(candidate_logits,axis=-1,keepdims=True) # (N_BATCH,1)
+      loss = tf.reduce_mean(-labels_logits+Z)
+
+    if not embed_kernel_shapes:
+      return loss 
+    else:
+      with tf.variable_scope(&#39;backprop&#39;):
+        # note: gradients computed as sparse slices (tf.IndexedSlice), indices may duplicate
+        grad_input_embed_shape,grad_target_embed_shape = embed_kernel_shapes
+        batch_len = tf.cast(tf.shape(labels)[0],tf.float32)
+        samples_pred = tf.exp(samples_logits-Z)/batch_len # (N_BATCH,N_SAMPLED)
+        samples_mass = tf.reduce_sum(samples_pred,axis=-1,keepdims=True) # (N_BATCH,1)
+
+        with tf.variable_scope(&#39;grad_input_embed&#39;):
+          grad_input_embed = tf.matmul(samples_pred,samples_embed) # (N_BATCH,N_EMBED)
+          grad_input_embed = grad_input_embed - samples_mass * labels_embed 
+          grad_input_embed = tf.IndexedSlices(grad_input_embed, raw_inputs, grad_input_embed_shape)
+
+        with tf.variable_scope(&#39;grad_target_embed&#39;):
+          grad_target_embed1 = tf.matmul(samples_pred,inputs_embed,transpose_a=True) # (N_SAMPLED,N_EMBED)
+          grad_target_embed2 = -samples_mass * inputs_embed # (N_BATCH,N_EMBED)
+          grad_target_embed = tf.concat([grad_target_embed1,grad_target_embed2],0) # (N_BATCH+N_SAMPLED,N_EMBED)
+          grad_target_embed = tf.IndexedSlices(grad_target_embed, tf.concat([samples,labels],0), grad_target_embed_shape)
+
+      return loss,grad_input_embed,grad_target_embed
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="test-correctness">
+<h1>Test correctness<a class="headerlink" href="#test-correctness" title="Permalink to this heading">#</a></h1>
+<p>We tests loss and backpropagation on random data several times.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>tf.reset_default_graph()
+import numpy as np
+
+## random data to check correctness, synthetic word2vec problem
+
+def build_learn_task(N_WORDS,N_EMBED,N_SAMPLED):
+
+  inputs = tf.placeholder(tf.int64,[None])
+  labels = tf.placeholder(tf.int64,[None])
+
+  input_embed_kernel = tf.Variable(tf.random.normal([N_WORDS,N_EMBED],0,1),dtype=tf.float32)
+  target_embed_kernel = tf.Variable(tf.random.normal([N_WORDS,N_EMBED],0,1),dtype=tf.float32)
+  target_embed_bias = tf.zeros(N_WORDS)
+  inputs_embed = tf.gather(input_embed_kernel,inputs) # (N_BATCH,N_EMBED)
+
+  samples,labels_prior,samples_prior = tf.random.uniform_candidate_sampler(tf.expand_dims(inputs,-1),1,N_SAMPLED,False,N_WORDS)
+
+  ## our optimized loss
+  loss,grad_input,grad_target = sampled_softmax_loss(target_embed_kernel,
+                            labels,inputs_embed,
+                            samples,labels_prior,samples_prior,
+                            inputs,
+                            [tf.shape(input_embed_kernel),tf.shape(target_embed_kernel)])                          
+  grads = [grad_input,grad_target]
+
+  ## tensorflow loss - note it is not reduced accross batch
+  loss_tf = tf.nn.sampled_softmax_loss(target_embed_kernel,target_embed_bias,
+                                    labels,inputs_embed,
+                                    N_SAMPLED,N_WORDS,1,
+                                    (samples,labels_prior,samples_prior),
+                                    False)
+
+  loss_tf = tf.reduce_mean(loss_tf)
+  grads_auto = tf.gradients(loss,[input_embed_kernel,target_embed_kernel])
+  grads_tf = tf.gradients(loss_tf,[input_embed_kernel,target_embed_kernel])
+
+  return inputs,labels,loss,loss_tf,grads,grads_auto,grads_tf
+
+N_WORDS = 100000
+N_EMBED = 300
+N_SAMPLED = 100
+N_BATCH = 32
+
+inputs,labels,loss,loss_tf,grads,grads_auto,grads_tf = build_learn_task(N_WORDS,N_EMBED,N_SAMPLED)
+init_randomness = tf.global_variables_initializer()
+
+with tf.Session() as sess:
+  for _ in range(3):
+    # refresh randomness every time
+    sess.run(init_randomness)
+    inputs_batch,labels_batch = np.random.randint(0,10,[2,N_BATCH],np.int64)
+    feed_dict = {inputs:inputs_batch,labels:labels_batch}
+    # compute both losses and compare
+    loss1,loss2 = sess.run([loss_tf,loss],feed_dict)
+    np.testing.assert_array_almost_equal(loss1,loss2,5)
+    # compute gradients and compare
+    grad1,grad2,grad1_auto,grad2_auto = sess.run(grads+grads_auto,feed_dict)
+    for i in range(3):
+      np.testing.assert_array_almost_equal(grad1[i],grad1_auto[i],5)
+      np.testing.assert_array_almost_equal(grad2[i],grad2_auto[i],5)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="compare-speed">
+<h1>Compare speed<a class="headerlink" href="#compare-speed" title="Permalink to this heading">#</a></h1>
+<p>We evaluate speed of both implementations for forward and backward passes. Time is in seconds.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import time
+from matplotlib import pyplot as plt
+
+N_BATCH = 256
+N_LOOPS = 250
+train_data = np.random.randint(0,10,[N_LOOPS,2,N_BATCH],np.int64)
+
+def get_timings(op,train_data,init_op):
+  &#39;&#39;&#39; does timings for a graph op several times &#39;&#39;&#39;
+  with tf.Session() as sess:
+    sess.run(init_op)
+    times = []
+    for inputs_batch,labels_batch in train_data:
+      feed_dict = {inputs:inputs_batch,labels:labels_batch}
+      time_start = time.time()
+      sess.run(op,feed_dict)
+      time_end = time.time()
+      times.append(time_end-time_start)
+  return np.array(times)
+
+
+for N_WORDS,N_EMBED,N_SAMPLED in [[10000,100,50],[100000,300,100]]:
+
+  ## build task
+  tf.reset_default_graph()
+  inputs,labels,loss,loss_tf,grads,grads_auto,grads_tf = build_learn_task(N_WORDS,N_EMBED,N_SAMPLED)
+  init_op = tf.global_variables_initializer()
+  
+  ## prepare plots
+  _,axs=plt.subplots(1,2,figsize=(16,4))
+
+  ## evaluate forwad pass
+
+  for op,label in zip([loss_tf,loss],[&#39;loss TF&#39;,&#39;loss optimized&#39;]):
+    timings = get_timings(op,train_data,init_op)  
+    axs[0].plot(timings[3:],label=label)
+  axs[0].legend()
+  axs[0].set_title(&#39;forward pass&#39;)
+
+  ## evaluate backward pass
+
+  for op,label in zip([grads_tf,grads],[&#39;loss TF&#39;,&#39;loss optimized&#39;]):
+    timings = get_timings(op,train_data,init_op)  
+    axs[1].plot(timings[3:],label=label)
+  axs[1].legend()
+  axs[1].set_title(&#39;backward pass&#39;)
+
+  plt.suptitle(&#39;n_words,n_embed,n_samples=%s,%s,%s&#39;%(N_WORDS,N_EMBED,N_SAMPLED))
+  plt.show()
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05270fdad900bb8a74477f5dc6b133c7c83aa81b469420e84284128d47c39212.png" src="../_images/05270fdad900bb8a74477f5dc6b133c7c83aa81b469420e84284128d47c39212.png" />
+<img alt="../_images/8af7c4861e5cc10612e0dbbc992ac29a439a60220993755e664c75fad4296298.png" src="../_images/8af7c4861e5cc10612e0dbbc992ac29a439a60220993755e664c75fad4296298.png" />
+</div>
+</div>
+</section>
+
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Efficient Sampled Softmax</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#test-correctness">Test correctness</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-speed">Compare speed</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Maciej Skorski
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2018-2022, Maciej Skorski.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
