@@ -21,3 +21,4 @@ Some useful recipes
 - [Monitoring and Managing Azure Jobs](src/AzureJobs_Dashboard.ipynb)
 - [Tracking Azure Experiments](src/AzureJobs_Tracking.ipynb)
 - [Transfering data between Google Drive and Google Cloud](src/GoogleDrive2Cloud_Transfer.ipynb)
+- [Selenium Bot for Scrapping SketchEngine Data](SketchEngineScrapper.ipynb)
