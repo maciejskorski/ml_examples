@@ -22,3 +22,4 @@ Some useful recipes
 - [Tracking Azure Experiments](src/AzureJobs_Tracking.ipynb)
 - [Transfering data between Google Drive and Google Cloud](src/GoogleDrive2Cloud_Transfer.ipynb)
 - [Selenium Bot for Scrapping SketchEngine Data](SketchEngineScrapper.ipynb)
+- [SQL Lineage through sqlfluff for ClickHouse ETL scripts](src/sqlfluff_lineage.ipynb)
