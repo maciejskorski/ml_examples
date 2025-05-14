@@ -15,6 +15,7 @@ Various machine learning case studies, created as educational materials or showc
 - [Employee Attrition Model](src/EmployeeAttrition_TF.ipynb) trained in Tensorflow and productionalized on Google Colab with REST API 
 - [Heat Waves Models](src/HeatWaves_Models.ipynb), trained with various Python frameworks (statsmodels, GPFlow, PyMC3) and used for complex hypotheses testing
 - [Hiring Bias Study](src/HiringBias.ipynb), demonstrates the superiority of model-driven statistical insights over exploratory findings.
+- [Text Clustering on GPU](src/cuBERTopic.ipynb), implements and optimizes a modern text clustering pipeline (embeddings, dimension reduction, clustering) on GPU.
 
 # MLOps Examples
 Some useful recipes
