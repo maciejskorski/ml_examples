@@ -16,6 +16,7 @@ Various machine learning case studies, created as educational materials or showc
 - [Heat Waves Models](src/HeatWaves_Models.ipynb), trained with various Python frameworks (statsmodels, GPFlow, PyMC3) and used for complex hypotheses testing
 - [Hiring Bias Study](src/HiringBias.ipynb), demonstrates the superiority of model-driven statistical insights over exploratory findings.
 - [Text Clustering on GPU](src/cuBERTopic.ipynb), implements and optimizes a modern text clustering pipeline (embeddings, dimension reduction, clustering) on GPU.
+- [Reinforcement Fine-Tuning of LLMs for Emotion Recognition](src/RFT_demo.ipynb) implements fine-tunning of OpenAI models for better emotion recognition.
 
 # MLOps Examples
 Some useful recipes
